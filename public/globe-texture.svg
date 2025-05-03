@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="512" viewBox="0 0 1024 512">
+  <rect width="1024" height="512" fill="#0a0a20"/>
+  
+  <!-- World map outline with dots -->
+  <g fill="#6d28d9" opacity="0.8">
+    <!-- North America -->
+    <g>
+      <circle cx="200" cy="150" r="1.5"/>
+      <circle cx="210" cy="155" r="1.5"/>
+      <circle cx="220" cy="160" r="1.5"/>
+      <circle cx="230" cy="165" r="1.5"/>
+      <circle cx="240" cy="170" r="1.5"/>
+      <circle cx="250" cy="175" r="1.5"/>
+      <circle cx="260" cy="180" r="1.5"/>
+      <circle cx="270" cy="185" r="1.5"/>
+      <circle cx="280" cy="190" r="1.5"/>
+      <circle cx="290" cy="195" r="1.5"/>
+      <circle cx="300" cy="200" r="1.5"/>
+    </g>
+    
+    <!-- South America -->
+    <g>
+      <circle cx="300" cy="300" r="1.5"/>
+      <circle cx="310" cy="310" r="1.5"/>
+      <circle cx="320" cy="320" r="1.5"/>
+      <circle cx="330" cy="330" r="1.5"/>
+      <circle cx="340" cy="340" r="1.5"/>
+      <circle cx="350" cy="350" r="1.5"/>
+    </g>
+    
+    <!-- Europe -->
+    <g>
+      <circle cx="500" cy="150" r="1.5"/>
+      <circle cx="510" cy="155" r="1.5"/>
+      <circle cx="520" cy="160" r="1.5"/>
+      <circle cx="530" cy="165" r="1.5"/>
+      <circle cx="540" cy="170" r="1.5"/>
+    </g>
+    
+    <!-- Africa -->
+    <g>
+      <circle cx="500" cy="250" r="1.5"/>
+      <circle cx="510" cy="260" r="1.5"/>
+      <circle cx="520" cy="270" r="1.5"/>
+      <circle cx="530" cy="280" r="1.5"/>
+      <circle cx="540" cy="290" r="1.5"/>
+      <circle cx="550" cy="300" r="1.5"/>
+    </g>
+    
+    <!-- Asia -->
+    <g>
+      <circle cx="650" cy="180" r="1.5"/>
+      <circle cx="660" cy="185" r="1.5"/>
+      <circle cx="670" cy="190" r="1.5"/>
+      <circle cx="680" cy="195" r="1.5"/>
+      <circle cx="690" cy="200" r="1.5"/>
+      <circle cx="700" cy="205" r="1.5"/>
+      <circle cx="710" cy="210" r="1.5"/>
+      <circle cx="720" cy="215" r="1.5"/>
+    </g>
+    
+    <!-- Australia -->
+    <g>
+      <circle cx="800" cy="350" r="1.5"/>
+      <circle cx="810" cy="355" r="1.5"/>
+      <circle cx="820" cy="360" r="1.5"/>
+      <circle cx="830" cy="365" r="1.5"/>
+    </g>
+  </g>
+  
+  <!-- Add more dots for a denser pattern -->
+  <g fill="#22d3ee" opacity="0.6">
+    <!-- Random dots across the map -->
+    <g>
+      <circle cx="150" cy="120" r="1"/>
+      <circle cx="180" cy="140" r="1"/>
+      <circle cx="220" cy="130" r="1"/>
+      <circle cx="260" cy="150" r="1"/>
+      <circle cx="300" cy="170" r="1"/>
+      <circle cx="340" cy="190" r="1"/>
+      <circle cx="380" cy="210" r="1"/>
+      <circle cx="420" cy="230" r="1"/>
+      <circle cx="460" cy="250" r="1"/>
+      <circle cx="500" cy="270" r="1"/>
+      <circle cx="540" cy="290" r="1"/>
+      <circle cx="580" cy="310" r="1"/>
+      <circle cx="620" cy="330" r="1"/>
+      <circle cx="660" cy="350" r="1"/>
+      <circle cx="700" cy="370" r="1"/>
+      <circle cx="740" cy="390" r="1"/>
+      <circle cx="780" cy="410" r="1"/>
+      <circle cx="820" cy="430" r="1"/>
+      <circle cx="860" cy="450" r="1"/>
+      <circle cx="900" cy="470" r="1"/>
+    </g>
+  </g>
+  
+  <!-- Add a subtle glow effect -->
+  <filter id="glow">
+    <feGaussianBlur stdDeviation="5" result="blur"/>
+    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+  </filter>
+  
+  <rect width="1024" height="512" fill="url(#gradient)" opacity="0.2" filter="url(#glow)"/>
+  
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6d28d9" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+</svg>

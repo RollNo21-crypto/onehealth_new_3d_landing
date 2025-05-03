@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="512" viewBox="0 0 1024 512">
+  <!-- Base background -->
+  <rect width="1024" height="512" fill="#0a0a2a" opacity="0.3"/>
+  
+  <!-- Grid pattern for longitude/latitude lines -->
+  <g stroke="#6d28d9" stroke-width="0.5" opacity="0.4">
+    <!-- Longitude lines -->
+    <path d="M128,0 V512" />
+    <path d="M256,0 V512" />
+    <path d="M384,0 V512" />
+    <path d="M512,0 V512" />
+    <path d="M640,0 V512" />
+    <path d="M768,0 V512" />
+    <path d="M896,0 V512" />
+    
+    <!-- Latitude lines -->
+    <path d="M0,64 H1024" />
+    <path d="M0,128 H1024" />
+    <path d="M0,192 H1024" />
+    <path d="M0,256 H1024" />
+    <path d="M0,320 H1024" />
+    <path d="M0,384 H1024" />
+    <path d="M0,448 H1024" />
+  </g>
+  
+  <!-- Continent outlines - simplified abstract shapes -->
+  <g fill="#22d3ee" opacity="0.3" stroke="#6d28d9" stroke-width="1">
+    <!-- North America -->
+    <path d="M150,120 Q200,100 220,150 Q240,180 280,170 Q310,160 330,190 Q350,220 320,250 Q290,270 260,290 Q230,310 200,280 Q170,250 140,230 Q120,210 130,180 Q140,150 150,120 Z" />
+    
+    <!-- South America -->
+    <path d="M250,300 Q270,320 290,350 Q310,380 290,410 Q270,440 240,430 Q210,420 200,390 Q190,360 210,330 Q230,310 250,300 Z" />
+    
+    <!-- Europe -->
+    <path d="M500,150 Q520,130 550,140 Q580,150 590,180 Q600,210 580,230 Q560,250 530,240 Q500,230 490,200 Q480,170 500,150 Z" />
+    
+    <!-- Africa -->
+    <path d="M520,250 Q550,230 580,250 Q610,270 620,300 Q630,330 610,360 Q590,390 560,380 Q530,370 510,340 Q490,310 500,280 Q510,260 520,250 Z" />
+    
+    <!-- Asia -->
+    <path d="M600,150 Q650,120 700,140 Q750,160 780,200 Q810,240 790,280 Q770,320 730,330 Q690,340 650,320 Q610,300 590,260 Q570,220 600,150 Z" />
+    
+    <!-- Australia -->
+    <path d="M800,350 Q830,330 860,350 Q890,370 880,400 Q870,430 840,440 Q810,450 790,420 Q770,390 800,350 Z" />
+  </g>
+  
+  <!-- Glowing points representing major cities/connection points -->
+  <g fill="#6d28d9">
+    <circle cx="200" cy="180" r="3" opacity="0.8" />
+    <circle cx="520" cy="170" r="3" opacity="0.8" />
+    <circle cx="650" cy="220" r="3" opacity="0.8" />
+    <circle cx="750" cy="250" r="3" opacity="0.8" />
+    <circle cx="230" cy="350" r="3" opacity="0.8" />
+    <circle cx="550" cy="300" r="3" opacity="0.8" />
+    <circle cx="830" cy="380" r="3" opacity="0.8" />
+  </g>
+  
+  <!-- Cyan glowing points -->
+  <g fill="#22d3ee">
+    <circle cx="300" cy="200" r="2" opacity="0.7" />
+    <circle cx="480" cy="190" r="2" opacity="0.7" />
+    <circle cx="700" cy="180" r="2" opacity="0.7" />
+    <circle cx="600" cy="320" r="2" opacity="0.7" />
+    <circle cx="250" cy="320" r="2" opacity="0.7" />
+    <circle cx="800" cy="300" r="2" opacity="0.7" />
+  </g>
+</svg>
