@@ -11,25 +11,8 @@ import {
   Heart, 
   Lightbulb 
 } from 'lucide-react';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  Legend,
-} from 'recharts';
 
-const performanceData = [
-  { name: 'Q1', Efficiency: 65, Security: 78, Satisfaction: 82 },
-  { name: 'Q2', Efficiency: 72, Security: 82, Satisfaction: 85 },
-  { name: 'Q3', Efficiency: 78, Security: 87, Satisfaction: 89 },
-  { name: 'Q4', Efficiency: 85, Security: 92, Satisfaction: 94 },
-];
+
 
 const BentoGrid = () => {
   const benefits = [
@@ -100,58 +83,7 @@ const BentoGrid = () => {
   );
 };
 
-const PerformanceMetrics = () => {
-  return (
-    <div className="bg-neutral-900/50 backdrop-blur-sm rounded-2xl border border-neutral-800 p-6 md:p-8">
-      <h3 className="text-2xl font-display font-bold text-white mb-6">
-        Performance Analytics
-      </h3>
-      <div className="space-y-8">
-        <div className="h-[300px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={performanceData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-              <XAxis dataKey="name" stroke="#666" />
-              <YAxis stroke="#666" />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: '#1a1a1a',
-                  border: '1px solid #333',
-                  borderRadius: '8px',
-                }}
-              />
-              <Legend />
-              <Line type="monotone" dataKey="Efficiency" stroke="#6D28D9" strokeWidth={2} />
-              <Line type="monotone" dataKey="Security" stroke="#22D3EE" strokeWidth={2} />
-              <Line type="monotone" dataKey="Satisfaction" stroke="#10B981" strokeWidth={2} />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-        
-        <div className="h-[300px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={performanceData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-              <XAxis dataKey="name" stroke="#666" />
-              <YAxis stroke="#666" />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: '#1a1a1a',
-                  border: '1px solid #333',
-                  borderRadius: '8px',
-                }}
-              />
-              <Legend />
-              <Bar dataKey="Efficiency" fill="#6D28D9" />
-              <Bar dataKey="Security" fill="#22D3EE" />
-              <Bar dataKey="Satisfaction" fill="#10B981" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-    </div>
-  );
-};
+
 
 export const BenefitsSection = () => {
   return (
@@ -193,14 +125,8 @@ export const BenefitsSection = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 mb-24">
-          <div className="lg:col-span-3">
-            <BentoGrid />
-          </div>
-          
-          <div className="lg:col-span-2">
-            <PerformanceMetrics />
-          </div>
+        <div className="grid grid-cols-1 gap-8 lg:gap-12 mb-24">
+          <BentoGrid />
         </div>
 
         <motion.div 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ScrollProgressIndicator } from './components/ui/ScrollProgressIndicator';
 import { Navbar } from './components/layout/Navbar';
 import { FloatingActionButton } from './components/ui/FloatingActionButton';
@@ -11,6 +11,7 @@ import { TeamSection } from './components/sections/TeamSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { Footer } from './components/layout/Footer';
 import { CustomCursor } from './components/ui/CustomCursor';
+import { Preloader } from './components/ui/Preloader';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -46,6 +47,7 @@ function App() {
 
   return (
     <div className="relative overflow-hidden">
+      <Preloader minLoadingTime={2500} />
       <CustomCursor />
       <ScrollProgressIndicator />
       <Navbar />

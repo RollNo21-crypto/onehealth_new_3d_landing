@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.13.5",
+    "@react-three/drei": "^10.0.7",
+    "@react-three/fiber": "^9.1.2",
     "framer-motion": "^10.16.4",
     "gsap": "^3.13.0",
     "lucide-react": "^0.284.0",
