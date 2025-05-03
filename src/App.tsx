@@ -16,6 +16,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     
@@ -47,20 +49,24 @@ function App() {
 
   return (
     <div className="relative overflow-hidden">
-      <Preloader minLoadingTime={3000} forceDisplay={true} />
-      <CustomCursor />
-      <ScrollProgressIndicator />
-      <Navbar />
-      <main>
-        <HeroSection />
-        <SolutionsSection />
-        <BenefitsSection />
-        <InfrastructureSection />
-        <TeamSection />
-        <ContactSection />
-      </main>
-      <FloatingActionButton />
-      <Footer />
+      <Preloader minLoadingTime={3000} forceDisplay={true} onLoadingComplete={() => setIsLoading(false)} />
+      {!isLoading && (
+        <>
+          <CustomCursor />
+          <ScrollProgressIndicator />
+          <Navbar />
+          <main>
+            <HeroSection />
+            <SolutionsSection />
+            <BenefitsSection />
+            <InfrastructureSection />
+            <TeamSection />
+            <ContactSection />
+          </main>
+          <FloatingActionButton />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }

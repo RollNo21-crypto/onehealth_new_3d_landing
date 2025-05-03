@@ -5,9 +5,10 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 interface PreloaderProps {
   minLoadingTime?: number; // Minimum time to show the preloader in ms
   forceDisplay?: boolean; // Force display even if page is loaded
+  onLoadingComplete?: () => void; // Callback when loading is complete
 }
 
-export const Preloader: React.FC<PreloaderProps> = ({ minLoadingTime = 8000, forceDisplay = true }) => {
+export const Preloader: React.FC<PreloaderProps> = ({ minLoadingTime = 8000, forceDisplay = true, onLoadingComplete }) => {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
@@ -15,6 +16,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ minLoadingTime = 8000, for
     // Simulate minimum loading time to ensure animation is visible
     const timer = setTimeout(() => {
       setLoading(false);
+      onLoadingComplete?.();
     }, minLoadingTime);
 
     // Create progress animation that updates every 100ms
