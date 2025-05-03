@@ -49,8 +49,8 @@ export const Preloader: React.FC<PreloaderProps> = ({ minLoadingTime = 8000, for
             <motion.div
               initial={{ width: '0%' }}
               animate={{ width: `${progress}%` }}
-              transition={{ ease: 'linear' }}
-              className="absolute bottom-0 left-0 h-2 bg-gradient-to-r from-primary-500 to-secondary-400 rounded-full"
+              // transition={{ ease: 'linear' }}
+              // className="absolute bottom-0 left-0 h-2 bg-gradient-to-r from-primary-500 to-secondary-400 rounded-full"
             />
             <div className="absolute bottom-6 left-0 w-full text-center text-sm font-medium text-primary-500">
               {Math.round(progress)}%
