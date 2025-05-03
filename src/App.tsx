@@ -47,7 +47,7 @@ function App() {
 
   return (
     <div className="relative overflow-hidden">
-      <Preloader minLoadingTime={2500} />
+      <Preloader minLoadingTime={3000} forceDisplay={true} />
       <CustomCursor />
       <ScrollProgressIndicator />
       <Navbar />
