@@ -6,6 +6,8 @@ import { FloatingActionButton } from './components/ui/FloatingActionButton';
 import { HeroSection } from './components/sections/HeroSection';
 import { SolutionsSection } from './components/sections/SolutionsSection';
 import { BenefitsSection } from './components/sections/BenefitsSection';
+import { ServicesProductsSection } from './components/sections/ServicesProductsSection';
+import { PartnersSection } from './components/sections/PartnersSection';
 import { InfrastructureSection } from './components/sections/InfrastructureSection';
 import { TeamSection } from './components/sections/TeamSection';
 import { ContactSection } from './components/sections/ContactSection';
@@ -59,6 +61,8 @@ function App() {
             <HeroSection />
             <SolutionsSection />
             <BenefitsSection />
+            <ServicesProductsSection />
+            <PartnersSection />
             <InfrastructureSection />
             <TeamSection />
             <ContactSection />

@@ -11,77 +11,24 @@ import {
   Heart, 
   Lightbulb 
 } from 'lucide-react';
+import { AnimatedBenefitsList } from '../ui/AnimatedBenefitsList';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
-
-
-const BentoGrid = () => {
-  const benefits = [
-    {
-      icon: <ShieldCheck size={24} />,
-      title: "Enhanced Security",
-      description: "Multi-layered security architecture ensuring patient data remains protected.",
-      color: "from-purple-500/20 to-blue-500/20"
-    },
-    {
-      icon: <Zap size={24} />,
-      title: "Increased Efficiency",
-      description: "Streamlined workflows reducing administrative burden by up to 40%.",
-      color: "from-cyan-500/20 to-blue-500/20"
-    },
-    {
-      icon: <BarChart3 size={24} />,
-      title: "Data-Driven Insights",
-      description: "Advanced analytics transforming raw data into actionable intelligence.",
-      color: "from-green-500/20 to-emerald-500/20"
-    },
-    {
-      icon: <Users size={24} />,
-      title: "Improved Collaboration",
-      description: "Breaking down silos between departments and organizations.",
-      color: "from-orange-500/20 to-red-500/20"
-    },
-    {
-      icon: <Heart size={24} />,
-      title: "Better Outcomes",
-      description: "Comprehensive patient-centered approach leading to improved health outcomes.",
-      color: "from-pink-500/20 to-rose-500/20"
-    },
-    {
-      icon: <Globe size={24} />,
-      title: "Global Access",
-      description: "Infrastructure designed to function in diverse environments globally.",
-      color: "from-indigo-500/20 to-violet-500/20"
-    }
-  ];
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {benefits.map((benefit, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-          viewport={{ once: true }}
-          className="group relative overflow-hidden rounded-2xl bg-neutral-900/50 backdrop-blur-sm border border-neutral-800 p-6 hover:border-primary-500/50 transition-all duration-300"
-        >
-          <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-          <div className="relative z-10">
-            <div className="p-3 bg-primary-500/10 rounded-xl w-fit mb-4 text-primary-400 group-hover:scale-110 transition-transform duration-300">
-              {benefit.icon}
-            </div>
-            <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-primary-400 transition-colors duration-300">
-              {benefit.title}
-            </h3>
-            <p className="text-neutral-400 group-hover:text-neutral-300 transition-colors duration-300">
-              {benefit.description}
-            </p>
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
+// CSS for network dots pattern
+const networkDotsStyle = {
+  backgroundImage: `
+    radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.3) 1px, transparent 2px),
+    radial-gradient(circle at 25% 25%, rgba(79, 70, 229, 0.2) 2px, transparent 3px),
+    radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.25) 1.5px, transparent 2.5px),
+    radial-gradient(circle at 25% 75%, rgba(79, 70, 229, 0.15) 1px, transparent 2px),
+    radial-gradient(circle at 75% 25%, rgba(139, 92, 246, 0.2) 1.2px, transparent 1.8px)
+  `,
+  backgroundSize: '30px 30px, 40px 40px, 35px 35px, 45px 45px, 38px 38px',
+  backgroundPosition: '0 0, 15px 15px, -5px -5px, 20px -10px, -10px 20px',
 };
+
+
+// Replaced with AnimatedBenefitsList component
 
 
 
@@ -125,8 +72,82 @@ export const BenefitsSection = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 lg:gap-12 mb-24">
-          <BentoGrid />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-24">
+          <div className="order-2 md:order-1">
+            <AnimatedBenefitsList />
+          </div>
+          <div className="order-1 md:order-2 flex items-center justify-center">
+            <div className="relative w-full">
+              {/* Network dots and gradient background */}
+              <div className="absolute inset-0 -m-8 md:-m-16 lg:-m-24 opacity-70">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 via-secondary-500/20 to-primary-500/20 rounded-full blur-3xl"></div>
+                <div className="absolute inset-0 bg-network-dots"></div>
+              </div>
+              
+              {/* Animated network connections */}
+              <div className="absolute inset-0 -m-4 md:-m-12 lg:-m-16">
+                {[...Array(8)].map((_, i) => (
+                  <motion.div 
+                    key={i}
+                    className="absolute w-1 h-1 md:w-2 md:h-2 bg-primary-400 rounded-full"
+                    style={{
+                      top: `${20 + Math.random() * 60}%`,
+                      left: `${20 + Math.random() * 60}%`,
+                    }}
+                    animate={{
+                      opacity: [0.2, 0.8, 0.2],
+                      scale: [1, 1.5, 1],
+                    }}
+                    transition={{
+                      duration: 2 + Math.random() * 3,
+                      repeat: Infinity,
+                      delay: Math.random() * 2,
+                    }}
+                  />
+                ))}
+              </div>
+              
+              {/* Main brain animation */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="relative z-10 w-full max-w-md md:max-w-lg lg:max-w-3xl mx-auto"
+              >
+                <DotLottieReact
+                  src="https://lottie.host/62d9faf1-0780-49cf-adc7-9526a9cddf9e/60VjkshloO.lottie"
+                  loop
+                  autoplay
+                />
+                
+                {/* Glowing orbs around the brain */}
+                <div className="absolute inset-0 pointer-events-none">
+                  {[...Array(5)].map((_, i) => (
+                    <motion.div
+                      key={`orb-${i}`}
+                      className="absolute rounded-full bg-gradient-to-r from-primary-500/30 to-secondary-500/30 blur-md"
+                      style={{
+                        width: `${20 + Math.random() * 40}px`,
+                        height: `${20 + Math.random() * 40}px`,
+                        top: `${Math.random() * 100}%`,
+                        left: `${Math.random() * 100}%`,
+                      }}
+                      animate={{
+                        opacity: [0.3, 0.7, 0.3],
+                        scale: [1, 1.2, 1],
+                      }}
+                      transition={{
+                        duration: 3 + Math.random() * 2,
+                        repeat: Infinity,
+                        delay: Math.random() * 2,
+                      }}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </div>
 
         <motion.div 

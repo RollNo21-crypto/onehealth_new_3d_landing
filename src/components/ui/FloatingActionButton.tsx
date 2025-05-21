@@ -19,6 +19,8 @@ export const FloatingActionButton = () => {
     { label: 'Home', href: '#hero' },
     { label: 'Solutions', href: '#solutions' },
     { label: 'Benefits', href: '#benefits' },
+    { label: 'Services & Products', href: '#services-products' },
+    { label: 'Partners', href: '#partners' },
     { label: 'Contact', href: '#contact' },
   ];
 

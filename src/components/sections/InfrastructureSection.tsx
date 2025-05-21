@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Layers, Database, Lock, Share2, Network, Server, Cloud, Shield } from 'lucide-react';
+import { AnimatedSpan, Terminal, TypingAnimation } from "@/components/magicui/terminal";
 
 interface TimelineItemProps {
   year: string;
@@ -23,14 +24,25 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ year, title, description, i
     }
   }, [controls, inView]);
 
-  const variants = {
-    hidden: { opacity: 0, y: 50 },
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: index * 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        delay: index * 0.2,
+        duration: 0.5,
+        ease: "easeOut",
       },
     },
   };
@@ -40,22 +52,51 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ year, title, description, i
       ref={ref}
       initial="hidden"
       animate={controls}
-      variants={variants}
+      variants={containerVariants}
       className="flex gap-4 md:gap-8"
     >
       <div className="flex flex-col items-center">
-        <div className="w-10 h-10 rounded-full bg-primary-500 text-white flex items-center justify-center font-bold z-10">
+        <motion.div 
+          variants={itemVariants}
+          className="w-10 h-10 rounded-full bg-primary-500 text-white flex items-center justify-center font-bold z-10"
+          whileHover={{ scale: 1.1, backgroundColor: "#8b5cf6" }}
+          transition={{ type: "spring", stiffness: 300, damping: 10 }}
+        >
           {index + 1}
-        </div>
-        {index < 3 && <div className="w-0.5 h-full bg-neutral-800 mt-2"></div>}
+        </motion.div>
+        {index < 3 && (
+          <motion.div 
+            initial={{ height: 0 }}
+            animate={{ height: "100%" }}
+            transition={{ duration: 1, delay: (index * 0.3) + 0.5 }}
+            className="w-0.5 bg-neutral-800 mt-2"
+          />
+        )}
       </div>
-      <div className="bg-neutral-900 border border-neutral-800 rounded-xl p-6 mb-10 flex-1 hover:border-primary-500/30 hover:shadow-glow transition-all duration-300">
-        <span className="px-3 py-1 text-xs font-semibold bg-primary-500/20 text-primary-400 rounded-full mb-4 inline-block">
+      <motion.div 
+        variants={itemVariants}
+        className="bg-neutral-900 border border-neutral-800 rounded-xl p-6 mb-10 flex-1 hover:border-primary-500/30 hover:shadow-glow transition-all duration-300"
+        whileHover={{ y: -5, boxShadow: "0 0 20px rgba(109, 40, 217, 0.3)" }}
+      >
+        <motion.span 
+          variants={itemVariants}
+          className="px-3 py-1 text-xs font-semibold bg-primary-500/20 text-primary-400 rounded-full mb-4 inline-block"
+        >
           {year}
-        </span>
-        <h3 className="text-xl font-display font-bold text-white mb-3">{title}</h3>
-        <p className="text-neutral-400">{description}</p>
-      </div>
+        </motion.span>
+        <motion.h3 
+          variants={itemVariants}
+          className="text-xl font-display font-bold text-white mb-3"
+        >
+          {title}
+        </motion.h3>
+        <motion.p 
+          variants={itemVariants}
+          className="text-neutral-400"
+        >
+          {description}
+        </motion.p>
+      </motion.div>
     </motion.div>
   );
 };
@@ -80,14 +121,30 @@ const InfographicItem: React.FC<InfographicItemProps> = ({ icon, title, descript
     }
   }, [controls, inView]);
 
-  const variants = {
-    hidden: { opacity: 0, scale: 0.8 },
+  const containerVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
     visible: {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.5,
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
         delay: index * 0.1,
+        staggerChildren: 0.1,
+        delayChildren: index * 0.1 + 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut",
       },
     },
   };
@@ -97,12 +154,30 @@ const InfographicItem: React.FC<InfographicItemProps> = ({ icon, title, descript
       ref={ref}
       initial="hidden"
       animate={controls}
-      variants={variants}
+      variants={containerVariants}
+      whileHover={{ y: -5, boxShadow: "0 0 20px rgba(109, 40, 217, 0.3)" }}
       className="bg-neutral-900 border border-neutral-800 rounded-xl p-6 hover:border-primary-500/30 hover:shadow-glow transition-all duration-300"
     >
-      <div className="bg-primary-500/10 p-3 rounded-xl w-fit mb-4 text-primary-400">{icon}</div>
-      <h3 className="text-lg font-display font-bold text-white mb-3">{title}</h3>
-      <p className="text-neutral-400 text-sm">{description}</p>
+      <motion.div 
+        variants={itemVariants}
+        whileHover={{ scale: 1.1, rotate: 5 }}
+        transition={{ type: "spring", stiffness: 300, damping: 10 }}
+        className="bg-primary-500/10 p-3 rounded-xl w-fit mb-4 text-primary-400"
+      >
+        {icon}
+      </motion.div>
+      <motion.h3 
+        variants={itemVariants}
+        className="text-lg font-display font-bold text-white mb-3"
+      >
+        {title}
+      </motion.h3>
+      <motion.p 
+        variants={itemVariants}
+        className="text-neutral-400 text-sm"
+      >
+        {description}
+      </motion.p>
     </motion.div>
   );
 };
@@ -278,30 +353,95 @@ export const InfrastructureSection = () => {
                 Our infrastructure consistently delivers industry-leading performance metrics
                 across all critical dimensions of healthcare technology.
               </p>
-              <div className="space-y-6">
-                {[
-                  { label: "Uptime", value: 99.99 },
-                  { label: "Data Processing Speed", value: 85 },
-                  { label: "Security Rating", value: 97 },
-                  { label: "Scalability Index", value: 92 },
-                ].map((metric, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-neutral-300">{metric.label}</span>
-                      <span className="text-primary-400 font-semibold">{metric.value}%</span>
-                    </div>
-                    <div className="h-2 bg-neutral-800 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${metric.value}%` }}
-                        transition={{ duration: 1.5, delay: index * 0.2 }}
-                        viewport={{ once: true }}
-                        className="h-full bg-gradient-to-r from-primary-500 to-secondary-400"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <Terminal className="mb-6 terminal-glow">
+                <div className="grid gap-y-2">
+                  <TypingAnimation duration={30} delay={300} className="text-green-400 font-mono">$ bolt-health performance --check</TypingAnimation>
+                  <TypingAnimation duration={15} delay={1500} className="text-blue-400 font-mono">✓ Initializing performance diagnostics...</TypingAnimation>
+                  <TypingAnimation duration={10} delay={2000} className="text-yellow-400 font-mono">✓ Compiling system metrics...</TypingAnimation>
+                  <TypingAnimation duration={10} delay={2300} className="text-neutral-400 font-mono opacity-80">[ ████████████████████ ] 100% complete</TypingAnimation>
+                  
+                  {[
+                    { label: "Uptime", value: 99.99, color: "bg-green-500" },
+                    { label: "Data Processing Speed", value: 85, color: "bg-blue-500" },
+                    { label: "Security Rating", value: 97, color: "bg-purple-500" },
+                    { label: "Scalability Index", value: 92, color: "bg-amber-500" },
+                  ].map((metric, index) => (
+                    <AnimatedSpan 
+                      key={index} 
+                      delay={2800 + (index * 600)}
+                      className="block mt-3 font-mono"
+                    >
+                      <div className="flex items-center">
+                        <TypingAnimation 
+                          duration={15} 
+                          delay={2800 + (index * 600)} 
+                          className="text-white font-mono"
+                        >
+                          {`${metric.label}: `}
+                        </TypingAnimation>
+                        <motion.span 
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.5, delay: (2800 + (index * 600) + 300) / 1000 }}
+                          className="text-primary-400 font-semibold ml-1 font-mono"
+                        >
+                          {metric.value}%
+                        </motion.span>
+                        <div className="ml-2 flex-1 bg-neutral-800 rounded-full h-3 overflow-hidden border border-neutral-700">
+                          <motion.div 
+                            initial={{ width: 0 }} 
+                            animate={{ width: `${metric.value}%` }}
+                            transition={{ 
+                              duration: 1.8, 
+                              delay: (2800 + (index * 600)) / 1000,
+                              ease: "easeInOut"
+                            }}
+                            className={`h-full ${metric.color} rounded-full relative`}
+                          >
+                            <motion.div 
+                              className="absolute top-0 left-0 right-0 bottom-0 bg-white opacity-30"
+                              initial={{ x: "-100%" }}
+                              animate={{ x: "100%" }}
+                              transition={{ 
+                                duration: 1, 
+                                delay: (2800 + (index * 600) + 500) / 1000,
+                                repeat: Infinity,
+                                repeatDelay: 2
+                              }}
+                            />
+                          </motion.div>
+                        </div>
+                        <div className="ml-2 flex space-x-0.5">
+                          {Array.from({ length: 10 }).map((_, i) => (
+                            <motion.span 
+                              key={i}
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ 
+                                opacity: i < Math.floor(metric.value / 10) ? 1 : 0.2,
+                                height: i < Math.floor(metric.value / 10) ? 16 : 8
+                              }}
+                              transition={{ 
+                                duration: 0.4, 
+                                delay: (2800 + (index * 600)) / 1000 + (i * 0.1)
+                              }}
+                              className={`inline-block w-1.5 rounded-sm ${i < Math.floor(metric.value / 10) ? metric.color : 'bg-neutral-700'}`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </AnimatedSpan>
+                  ))}
+                  <AnimatedSpan delay={6000} className="block mt-5 border-t border-neutral-800 pt-3">
+                    <TypingAnimation duration={20} delay={6000} className="text-green-400 font-mono font-semibold">✓ All systems operational</TypingAnimation>
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 1, delay: 6.5 }}
+                      className="h-0.5 bg-gradient-to-r from-green-500 to-transparent mt-1"
+                    />
+                  </AnimatedSpan>
+                </div>
+              </Terminal>
             </div>
             <div className="bg-gradient-to-br from-primary-900/30 to-secondary-900/30 p-8 md:p-12 flex items-center">
               <div className="w-full">
@@ -327,8 +467,27 @@ export const InfrastructureSection = () => {
                       viewport={{ once: true }}
                       className="flex items-center gap-2"
                     >
-                      <div className="w-4 h-4 rounded-full bg-primary-500 flex-shrink-0" />
-                      <span className="text-white">{cert}</span>
+                      <motion.div 
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        transition={{ 
+                          type: "spring", 
+                          stiffness: 300, 
+                          damping: 15, 
+                          delay: index * 0.15 + 0.2 
+                        }}
+                        viewport={{ once: true }}
+                        className="w-4 h-4 rounded-full bg-primary-500 flex-shrink-0" 
+                      />
+                      <motion.span 
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.15 + 0.3 }}
+                        viewport={{ once: true }}
+                        className="text-white"
+                      >
+                        {cert}
+                      </motion.span>
                     </motion.div>
                   ))}
                 </div>

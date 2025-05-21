@@ -66,6 +66,7 @@ export default {
         'float': 'float 6s ease-in-out infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'gradient': 'gradient 15s ease infinite',
+        'highlight': 'highlight 3s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -76,6 +77,10 @@ export default {
           '0%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
           '100%': { backgroundPosition: '0% 50%' },
+        },
+        highlight: {
+          '0%, 100%': { backgroundColor: 'transparent' },
+          '50%': { backgroundColor: 'rgba(109, 40, 217, 0.1)' },
         },
       },
       boxShadow: {
