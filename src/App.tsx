@@ -4,6 +4,7 @@ import { ScrollProgressIndicator } from './components/ui/ScrollProgressIndicator
 import { Navbar } from './components/layout/Navbar';
 import { FloatingActionButton } from './components/ui/FloatingActionButton';
 import { HeroSection } from './components/sections/HeroSection';
+import { MissionVisionSection } from './components/sections/MissionVisionSection';
 import { SolutionsSection } from './components/sections/SolutionsSection';
 import { BenefitsSection } from './components/sections/BenefitsSection';
 import { ServicesProductsSection } from './components/sections/ServicesProductsSection';
@@ -59,6 +60,7 @@ function App() {
           <Navbar />
           <main>
             <HeroSection />
+            <MissionVisionSection />
             <SolutionsSection />
             <BenefitsSection />
             <ServicesProductsSection />
