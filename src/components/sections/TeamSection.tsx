@@ -258,14 +258,6 @@ export const TeamSection = () => {
     }
   ];
 
-  const partners = [
-    { name: "WHO", logo: "https://placehold.co/200x80/2c2c2c/FFFFFF?text=World+Health+Org" },
-    { name: "Mayo Clinic", logo: "https://placehold.co/200x80/2c2c2c/FFFFFF?text=Mayo+Clinic" },
-    { name: "Microsoft", logo: "https://placehold.co/200x80/2c2c2c/FFFFFF?text=Microsoft" },
-    { name: "Johns Hopkins", logo: "https://placehold.co/200x80/2c2c2c/FFFFFF?text=Johns+Hopkins" },
-    { name: "NHS", logo: "https://placehold.co/200x80/2c2c2c/FFFFFF?text=NHS" },
-    { name: "Gates Foundation", logo: "https://placehold.co/200x80/2c2c2c/FFFFFF?text=Gates+Foundation" }
-  ];
 
   return (
     <section id="team" className="py-20 md:py-32 relative overflow-hidden bg-neutral-50/5">
@@ -309,17 +301,6 @@ export const TeamSection = () => {
               <TeamMember key={index} member={member} index={index} />
             ))}
           </TeamCarousel>
-        </div>
-
-        <div className="mt-24">
-          <h3 className="text-2xl font-display font-bold text-white mb-8 text-center">
-            Our Strategic Partners
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {partners.map((partner, index) => (
-              <PartnerLogo key={index} partner={partner} index={index} />
-            ))}
-          </div>
         </div>
       </div>
     </section>

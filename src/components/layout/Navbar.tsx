@@ -17,8 +17,11 @@ export const Navbar = () => {
 
   const navLinks = [
     { label: 'Home', href: '#hero' },
-    { label: 'Solutions', href: '#solutions' },
+    { label: 'Mission', href: '#mission-vision' },
     { label: 'Benefits', href: '#benefits' },
+    { label: 'Solutions', href: '#solutions' },
+    { label: 'Services', href: '#services-products' },
+    { label: 'Partners', href: '#partners' },
     { label: 'Infrastructure', href: '#infrastructure' },
     { label: 'Team', href: '#team' },
     { label: 'Contact', href: '#contact' },
@@ -28,50 +31,62 @@ export const Navbar = () => {
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-background/90 backdrop-blur-md shadow-md' 
+          ? 'bg-background/90 backdrop-blur-md shadow-lg border-b border-neutral-800/50' 
           : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
-      <nav className="container mx-auto px-6 py-4 md:px-12">
+      <nav className="container mx-auto px-6 py-4 md:py-5 md:px-12">
         <div className="flex items-center justify-between">
-          <a 
+          <motion.a 
             href="#hero" 
             className="flex items-center gap-2 text-2xl font-display font-bold text-white"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             <Globe className="w-8 h-8 text-primary-500" />
             <span>OneHealth</span>
-          </a>
+          </motion.a>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
+            {navLinks.map((link, index) => (
+              <motion.a
                 key={link.label}
                 href={link.href}
-                className="text-neutral-300 hover:text-white relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary-500 after:transition-all hover:after:w-full"
+                className="text-neutral-200 hover:text-white font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary-500 after:transition-all hover:after:w-full"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05, duration: 0.5 }}
+                whileHover={{ y: -2 }}
               >
                 {link.label}
-              </a>
+              </motion.a>
             ))}
-            <a
+            <motion.a
               href="#contact"
-              className="bg-primary-500 hover:bg-primary-600 text-white py-2 px-6 rounded-full transition-all shadow-glow hover:shadow-none hover:translate-y-0.5"
+              className="bg-primary-500 hover:bg-primary-600 text-white py-2.5 px-7 rounded-xl font-medium transition-all shadow-lg shadow-primary-500/20 hover:shadow-primary-500/30 hover:translate-y-0.5"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               Get Started
-            </a>
+            </motion.a>
           </div>
 
           {/* Tablet/Mobile Navigation Button */}
-          <button
+          <motion.button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-white z-50 p-2 hover:bg-neutral-800 rounded-lg transition-colors"
+            className="lg:hidden text-white z-50 p-3 hover:bg-primary-500/20 rounded-xl transition-colors"
             aria-label="Toggle menu"
+            whileTap={{ scale: 0.9 }}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
+          </motion.button>
         </div>
 
         {/* Tablet/Mobile Menu */}
@@ -82,36 +97,40 @@ export const Navbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden fixed inset-0 top-16 bg-black z-40"
+              className="lg:hidden fixed inset-0 top-16 bg-neutral-950/95 backdrop-blur-md z-40"
             >
               <div className="container mx-auto px-6 py-8">
-                <div className="flex flex-col space-y-6">
-                  {navLinks.map((link) => (
+                <div className="flex flex-col space-y-8">
+                  {navLinks.map((link, index) => (
                     <motion.div
                       key={link.label}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
                     >
                       <a
                         href={link.href}
-                        className="text-xl text-neutral-300 hover:text-white block py-2 border-b border-neutral-800 hover:border-primary-500 transition-colors"
+                        className="flex items-center text-xl font-medium text-neutral-200 hover:text-white py-3 border-b border-neutral-800/50 hover:border-primary-500 transition-all"
                         onClick={() => setIsMenuOpen(false)}
                       >
+                        <span className="inline-flex items-center justify-center w-8 h-8 mr-3 rounded-full bg-primary-500/20 text-primary-400 text-sm">
+                          {index + 1}
+                        </span>
                         {link.label}
                       </a>
                     </motion.div>
                   ))}
                   <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3, delay: 0.2 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="pt-4"
                   >
                     <a
                       href="#contact"
-                      className="inline-block bg-primary-500 hover:bg-primary-600 text-white py-3 px-8 rounded-full text-lg w-full text-center"
+                      className="inline-block bg-primary-500 hover:bg-primary-600 text-white py-4 px-8 rounded-xl text-lg w-full text-center font-medium shadow-lg shadow-primary-500/20"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Get Started
