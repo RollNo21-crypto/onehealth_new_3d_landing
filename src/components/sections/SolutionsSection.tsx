@@ -39,8 +39,55 @@ const CircleOption: React.FC<CircleOptionProps> = ({
   onClick, 
   angle 
 }) => {
+  // Define position styles for components on left and right sides
+  const positionStyles = {
+    'right-top': { 
+      top: '25%', 
+      right: '5%',
+      transform: 'translateY(-50%)'
+    },
+    'right-middle': { 
+      top: '50%',
+      right: '5%', 
+      transform: 'translateY(-50%)'
+    },
+    'right-bottom': { 
+      top: '75%',
+      right: '5%',
+      transform: 'translateY(-50%)'
+    },
+    'left-top': {
+      top: '25%',
+      left: '5%',
+      transform: 'translateY(-50%)'
+    },
+    'left-middle': {
+      top: '50%',
+      left: '5%',
+      transform: 'translateY(-50%)'
+    },
+    'left-bottom': {
+      top: '75%',
+      left: '5%',
+      transform: 'translateY(-50%)'
+    }
+  };
+
+  // Add connecting line styles
+  const lineStyles = {
+    position: 'absolute',
+    width: '90%',
+    height: '2px',
+    background: 'linear-gradient(90deg, rgba(99,102,241,0.2) 0%, rgba(99,102,241,0.5) 50%, rgba(99,102,241,0.2) 100%)',
+    top: '50%',
+    left: '5%',
+    transform: 'translateY(-50%)',
+    zIndex: -1
+  };
+  
   // Calculate position around the circle
-  const radius = 210; // Distance from center
+  const radius = 230; // Outer circle radius
+  // Apply a small offset correction to ensure perfect alignment
   const x = Math.cos(angle) * radius;
   const y = Math.sin(angle) * radius;
   
@@ -49,15 +96,16 @@ const CircleOption: React.FC<CircleOptionProps> = ({
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 ${isActive ? 'z-10' : 'z-0'}`}
+      className={`absolute cursor-pointer transition-all duration-300 ${isActive ? 'z-10' : 'z-0'}`}
       style={{ 
         left: `calc(50% + ${x}px)`, 
         top: `calc(50% + ${y}px)`,
+        transform: 'translate(-50%, -50%)', // Ensure perfect centering
       }}
       onClick={onClick}
     >
       <div 
-        className={`flex flex-col items-center w-32 h-32 rounded-full ${isActive ? 'scale-110' : 'scale-100'} transition-all duration-300`}
+        className={`flex flex-col items-center w-36 rounded-full ${isActive ? 'scale-110' : 'scale-100'} transition-all duration-300`}
       >
         <div 
           className={`flex items-center justify-center w-20 h-20 rounded-full shadow-lg transition-all duration-300 ${isActive ? 'ring-4 ring-white/20' : ''}`}
@@ -67,9 +115,9 @@ const CircleOption: React.FC<CircleOptionProps> = ({
             {icon}
           </div>
         </div>
-        <div className="mt-2 text-center">
+        <div className="mt-3 text-center bg-neutral-900/80 backdrop-blur-sm px-3 py-2 rounded-lg border border-neutral-800/50">
           <h4 className="text-sm font-bold text-white">{title}</h4>
-          <p className="text-xs text-neutral-400 mt-1 max-w-[120px]">{description}</p>
+          <p className="text-xs text-neutral-400 mt-1 max-w-[140px]">{description}</p>
         </div>
       </div>
     </motion.div>
@@ -187,43 +235,51 @@ export const SolutionsSection = () => {
   const stepCards = [
     {
       number: 1,
-      icon: <Heart size={16} />,
-      title: "Healthcare Integration",
-      description: "Connecting disparate systems through seamless data exchange protocols.",
-      color: "#4f46e5", // indigo-600
+      icon: <CheckCircle size={16} />,
+      title: "Quality Assurance",
+      description: "Ensuring highest standards through rigorous testing and validation.",
+      color: "#4338ca", // indigo-700
       delay: 0.1,
     },
     {
       number: 2,
       icon: <Brain size={16} />,
-      title: "AI Diagnostics",
-      description: "Machine learning algorithms for early disease detection and diagnosis.",
-      color: "#0ea5e9", // sky-500
+      title: "AI Integration",
+      description: "Advanced neural networks for intelligent decision support.",
+      color: "#6366f1", // indigo-500
       delay: 0.2,
     },
     {
       number: 3,
-      icon: <BadgeCheck size={16} />,
-      title: "Verification Systems",
-      description: "Blockchain-powered verification for data integrity and security.",
-      color: "#10b981", // emerald-500
+      icon: <Microscope size={16} />,
+      title: "Research Platform",
+      description: "Collaborative environment for accelerating discoveries.",
+      color: "#8b5cf6", // violet-500
       delay: 0.3,
     },
     {
-      number: 4,
-      icon: <Laptop size={16} />,
-      title: "Digital Transformation",
-      description: "End-to-end solutions for digital-first healthcare delivery.",
-      color: "#6366f1", // indigo-500
-      delay: 0.4,
+      number: 6,
+      icon: <Shield size={16} />,
+      title: "Security Framework",
+      description: "Military-grade protection for sensitive patient data.",
+      color: "#10b981", // emerald-500
+      delay: 0.6,
     },
     {
-      number: 5,
-      icon: <ShieldCheck size={16} />,
-      title: "Security Framework",
-      description: "Encryption and privacy controls ensuring protected patient data.",
-      color: "#8b5cf6", // violet-500
-      delay: 0.5,
+      number: 7,
+      icon: <Globe size={16} />,
+      title: "Global Reach",
+      description: "Solutions that work across diverse geographic regions.",
+      color: "#22c55e", // green-500
+      delay: 0.7,
+    },
+    {
+      number: 8,
+      icon: <Zap size={16} />,
+      title: "Performance Boost",
+      description: "Optimized systems for maximum efficiency and speed.",
+      color: "#84cc16", // lime-500
+      delay: 0.8,
     },
   ];
 
@@ -275,7 +331,7 @@ export const SolutionsSection = () => {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              className="relative w-40 h-40 rounded-full flex items-center justify-center bg-neutral-900 border border-neutral-800 shadow-xl"
+              className="relative w-48 h-48 rounded-full flex items-center justify-center bg-neutral-900 border border-neutral-800 shadow-xl"
             >
               <div className="absolute inset-0 rounded-full overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-400/20 animate-slow-spin"></div>
@@ -287,12 +343,35 @@ export const SolutionsSection = () => {
             </motion.div>
           </div>
 
-          {/* Connection Lines */}
+          {/* Connection Lines - Three Concentric Circles */}
           <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            {/* Inner Circle (already exists) */}
             <circle 
               cx="50%" 
               cy="50%" 
-              r="210" 
+              r="100" 
+              fill="none" 
+              stroke="url(#circleGradient)" 
+              strokeWidth="1" 
+              strokeDasharray="3,3" 
+              className="animate-reverse-slow-spin" 
+            />
+            {/* Middle Circle */}
+            <circle 
+              cx="50%" 
+              cy="50%" 
+              r="170" 
+              fill="none" 
+              stroke="url(#circleGradient)" 
+              strokeWidth="1" 
+              strokeDasharray="4,4" 
+              className="animate-slow-spin" 
+            />
+            {/* Outer Circle - Where components are arranged */}
+            <circle 
+              cx="50%" 
+              cy="50%" 
+              r="230" 
               fill="none" 
               stroke="url(#circleGradient)" 
               strokeWidth="1" 
@@ -308,42 +387,48 @@ export const SolutionsSection = () => {
             </defs>
           </svg>
 
-          {/* Options around the circle */}
-          {circleOptions.map((option, index) => {
-            // Calculate angle for positioning (starting from top, going clockwise)
-            const angle = (Math.PI * 2 * index) / circleOptions.length - Math.PI / 2;
-            
-            return (
-              <CircleOption
-                key={index}
-                icon={option.icon}
-                title={option.title}
-                description={option.description}
-                color={option.color}
-                index={index}
-                isActive={activeOptionIndex === index}
-                onClick={() => setActiveOptionIndex(index)}
-                angle={angle}
-              />
-            );
-          })}
-        </div>
+       
 
-        {/* Step Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
-          {stepCards.map((step, index) => (
-            <StepCard
-              key={index}
-              number={step.number}
-              icon={step.icon}
-              title={step.title}
-              description={step.description}
-              color={step.color}
-              delay={step.delay}
-            />
-          ))}
+        {/* Step Cards in Half Moon Alignment */}
+        <div className="relative w-full h-[500px] flex items-center justify-center">
+          <div className="absolute w-full h-full flex flex-wrap justify-center">
+            {stepCards.map((step, index) => {
+              // Calculate position in half moon formation
+              const totalCards = stepCards.length;
+              const angle = (Math.PI / (totalCards - 1)) * index;
+              const radius = 550; // Radius of half moon
+              
+              // Calculate x and y positions
+              const x = Math.cos(angle) * radius;
+              const y = Math.sin(angle) * radius * 0.7; // Multiply by 0.5 to flatten into half moon
+              
+              return (
+                <div
+                  key={index}
+                  className="absolute w-[30%] max-w-[280px]"
+                  style={{
+                    marginLeft: '-10%',
+                    transform: `translate(${x}px, ${y}px)`,
+                    left: '50%',
+                    top: '50%',
+                  }}
+                >
+                  <StepCard
+                    number={step.number}
+                    icon={step.icon}
+                    title={step.title}
+                    description={step.description}
+                    color={step.color}
+                    delay={step.delay}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
+    </div>
+
     </section>
   );
 };
