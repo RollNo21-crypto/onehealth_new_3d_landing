@@ -257,7 +257,7 @@ export const SolutionsSection = () => {
             className="relative w-48 h-48 rounded-full flex items-center justify-center bg-neutral-900 border border-neutral-800 shadow-xl"
           >
             <div className="absolute inset-0 rounded-full overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-400/20 animate-slow-spin"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-400/20"></div>
             </div>
             <div className="text-center">
               <h3 className="text-xl font-bold text-white">6 STEPS</h3>
@@ -277,7 +277,6 @@ export const SolutionsSection = () => {
             stroke="url(#circleGradient)" 
             strokeWidth="1" 
             strokeDasharray="3,3" 
-            className="animate-reverse-slow-spin" 
           />
           {/* Middle Circle */}
           <circle 
@@ -288,7 +287,6 @@ export const SolutionsSection = () => {
             stroke="url(#circleGradient)" 
             strokeWidth="1" 
             strokeDasharray="4,4" 
-            className="animate-slow-spin" 
           />
           {/* Outer Circle - Where components are arranged */}
           <circle 
@@ -299,7 +297,6 @@ export const SolutionsSection = () => {
             stroke="url(#circleGradient)" 
             strokeWidth="1" 
             strokeDasharray="5,5" 
-            className="animate-reverse-slow-spin" 
           />
           <defs>
             <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
