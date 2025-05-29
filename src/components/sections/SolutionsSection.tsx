@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
@@ -10,18 +10,82 @@ import {
   Globe, 
   Laptop, 
   PieChart, 
-  ShieldCheck 
+  ShieldCheck,
+  CheckCircle,
+  Users,
+  LineChart,
+  Shield,
+  Zap
 } from 'lucide-react';
 
-interface CardProps {
+interface CircleOptionProps {
   icon: React.ReactNode;
   title: string;
   description: string;
-  badgeText?: string;
+  color: string;
+  index: number;
+  isActive: boolean;
+  onClick: () => void;
+  angle: number;
+}
+
+const CircleOption: React.FC<CircleOptionProps> = ({ 
+  icon, 
+  title, 
+  description, 
+  color, 
+  index, 
+  isActive, 
+  onClick, 
+  angle 
+}) => {
+  // Calculate position around the circle
+  const radius = 210; // Distance from center
+  const x = Math.cos(angle) * radius;
+  const y = Math.sin(angle) * radius;
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className={`absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 ${isActive ? 'z-10' : 'z-0'}`}
+      style={{ 
+        left: `calc(50% + ${x}px)`, 
+        top: `calc(50% + ${y}px)`,
+      }}
+      onClick={onClick}
+    >
+      <div 
+        className={`flex flex-col items-center w-32 h-32 rounded-full ${isActive ? 'scale-110' : 'scale-100'} transition-all duration-300`}
+      >
+        <div 
+          className={`flex items-center justify-center w-20 h-20 rounded-full shadow-lg transition-all duration-300 ${isActive ? 'ring-4 ring-white/20' : ''}`}
+          style={{ backgroundColor: color }}
+        >
+          <div className="text-white">
+            {icon}
+          </div>
+        </div>
+        <div className="mt-2 text-center">
+          <h4 className="text-sm font-bold text-white">{title}</h4>
+          <p className="text-xs text-neutral-400 mt-1 max-w-[120px]">{description}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+interface StepCardProps {
+  number: number;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  color: string;
   delay: number;
 }
 
-const SolutionCard: React.FC<CardProps> = ({ icon, title, description, badgeText, delay }) => {
+const StepCard: React.FC<StepCardProps> = ({ number, icon, title, description, color, delay }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -35,89 +99,131 @@ const SolutionCard: React.FC<CardProps> = ({ icon, title, description, badgeText
       transition={{ duration: 0.6, delay }}
       className="relative group"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-400/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-500"></div>
-      <div className="relative overflow-hidden rounded-2xl bg-neutral-900 border border-neutral-800 group-hover:border-primary-500/50 p-6 transition-all duration-300 h-full">
-        {badgeText && (
-          <div className="absolute -right-12 top-6 rotate-45 bg-primary-500 px-12 py-1 text-xs font-bold">
-            {badgeText}
+      <div 
+        className="relative overflow-hidden rounded-xl border border-neutral-800 p-4 transition-all duration-300 h-full"
+        style={{ backgroundColor: 'rgba(18, 18, 18, 0.6)' }}
+      >
+        <div className="flex items-center mb-3">
+          <div 
+            className="flex items-center justify-center w-8 h-8 rounded-full text-white font-bold text-sm mr-2"
+            style={{ backgroundColor: color }}
+          >
+            {number}
           </div>
-        )}
-        <div className="mb-4 p-3 bg-primary-500/10 rounded-xl w-fit text-primary-400 group-hover:text-primary-300 group-hover:bg-primary-500/20 transition-all duration-300">
-          {icon}
+          <div 
+            className="flex items-center justify-center w-8 h-8 rounded-full mr-2"
+            style={{ backgroundColor: `${color}30` }}
+          >
+            <div className="text-white">
+              {icon}
+            </div>
+          </div>
+          <h3 className="text-sm font-bold text-white">
+            {title}
+          </h3>
         </div>
-        <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-primary-300 transition-colors duration-300">
-          {title}
-        </h3>
-        <p className="text-neutral-400 group-hover:text-neutral-300 transition-colors duration-300">
+        <p className="text-xs text-neutral-400">
           {description}
         </p>
-        <motion.div
-          className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-400"
-          initial={{ width: "0%" }}
-          whileInView={{ width: "100%" }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        />
       </div>
     </motion.div>
   );
 };
 
 export const SolutionsSection = () => {
-  const solutions = [
+  const [activeOptionIndex, setActiveOptionIndex] = useState(0);
+  
+  const circleOptions = [
     {
-      icon: <Heart size={24} />,
-      title: "Healthcare Integration",
-      description: "Connecting disparate healthcare systems through seamless data integration and interoperability frameworks.",
-      delay: 0.1,
+      icon: <CheckCircle size={24} />,
+      title: "Quality Assurance",
+      description: "Ensuring highest standards through rigorous testing and validation.",
+      color: "#4338ca", // indigo-700
     },
     {
       icon: <Brain size={24} />,
-      title: "AI Diagnostics",
-      description: "Advanced neural networks and machine learning algorithms for early disease detection and diagnosis.",
-      badgeText: "TRENDING",
-      delay: 0.2,
+      title: "AI Integration",
+      description: "Advanced neural networks for intelligent decision support.",
+      color: "#6366f1", // indigo-500
     },
     {
       icon: <Microscope size={24} />,
       title: "Research Platform",
-      description: "Collaborative environment for researchers to share findings and accelerate discoveries across disciplines.",
-      delay: 0.3,
+      description: "Collaborative environment for accelerating discoveries.",
+      color: "#8b5cf6", // violet-500
     },
     {
-      icon: <BadgeCheck size={24} />,
-      title: "Verification Systems",
-      description: "Blockchain-powered verification to ensure data integrity and security across all touchpoints.",
-      delay: 0.4,
+      icon: <Users size={24} />,
+      title: "Team Collaboration",
+      description: "Unified workspace for seamless cross-functional teamwork.",
+      color: "#a855f7", // purple-500
     },
     {
-      icon: <Leaf size={24} />,
-      title: "Environmental Monitoring",
-      description: "Real-time tracking of environmental factors affecting health outcomes and disease spread.",
-      delay: 0.5,
+      icon: <LineChart size={24} />,
+      title: "Data Analytics",
+      description: "Comprehensive insights from complex healthcare datasets.",
+      color: "#06b6d4", // cyan-500
+    },
+    {
+      icon: <Shield size={24} />,
+      title: "Security Framework",
+      description: "Military-grade protection for sensitive patient data.",
+      color: "#10b981", // emerald-500
     },
     {
       icon: <Globe size={24} />,
       title: "Global Reach",
-      description: "Infrastructure designed to function in diverse environments from urban centers to remote regions.",
-      delay: 0.6,
+      description: "Solutions that work across diverse geographic regions.",
+      color: "#22c55e", // green-500
     },
     {
-      icon: <Laptop size={24} />,
+      icon: <Zap size={24} />,
+      title: "Performance Boost",
+      description: "Optimized systems for maximum efficiency and speed.",
+      color: "#84cc16", // lime-500
+    },
+  ];
+
+  const stepCards = [
+    {
+      number: 1,
+      icon: <Heart size={16} />,
+      title: "Healthcare Integration",
+      description: "Connecting disparate systems through seamless data exchange protocols.",
+      color: "#4f46e5", // indigo-600
+      delay: 0.1,
+    },
+    {
+      number: 2,
+      icon: <Brain size={16} />,
+      title: "AI Diagnostics",
+      description: "Machine learning algorithms for early disease detection and diagnosis.",
+      color: "#0ea5e9", // sky-500
+      delay: 0.2,
+    },
+    {
+      number: 3,
+      icon: <BadgeCheck size={16} />,
+      title: "Verification Systems",
+      description: "Blockchain-powered verification for data integrity and security.",
+      color: "#10b981", // emerald-500
+      delay: 0.3,
+    },
+    {
+      number: 4,
+      icon: <Laptop size={16} />,
       title: "Digital Transformation",
-      description: "End-to-end solutions for organizations transitioning to digital-first healthcare delivery.",
-      delay: 0.7,
+      description: "End-to-end solutions for digital-first healthcare delivery.",
+      color: "#6366f1", // indigo-500
+      delay: 0.4,
     },
     {
-      icon: <PieChart size={24} />,
-      title: "Data Analytics",
-      description: "Comprehensive analytics suite for deriving actionable insights from complex health datasets.",
-      delay: 0.8,
-    },
-    {
-      icon: <ShieldCheck size={24} />,
+      number: 5,
+      icon: <ShieldCheck size={16} />,
       title: "Security Framework",
-      description: "Military-grade encryption and privacy controls ensuring patient data remains protected.",
-      delay: 0.9,
+      description: "Encryption and privacy controls ensuring protected patient data.",
+      color: "#8b5cf6", // violet-500
+      delay: 0.5,
     },
   ];
 
@@ -125,7 +231,7 @@ export const SolutionsSection = () => {
     <section id="solutions" className="py-20 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-background">
         <div className="absolute inset-0 opacity-20" style={{ 
-          backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.3) 0%, transparent 40%)'
+          backgroundImage: 'radial-gradient(circle at 50% 30%, rgba(34, 211, 238, 0.3) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.3) 0%, transparent 40%)'
         }}></div>
       </div>
 
@@ -147,7 +253,7 @@ export const SolutionsSection = () => {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-display font-bold text-white mb-6"
           >
-            Intelligent Solutions for a Connected World
+            8 Steps Infographic Solution
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -161,15 +267,79 @@ export const SolutionsSection = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {solutions.map((solution, index) => (
-            <SolutionCard
+        {/* Circular Infographic */}
+        <div className="relative h-[600px] mb-20">
+          {/* Center Circle */}
+          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="relative w-40 h-40 rounded-full flex items-center justify-center bg-neutral-900 border border-neutral-800 shadow-xl"
+            >
+              <div className="absolute inset-0 rounded-full overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-400/20 animate-slow-spin"></div>
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-bold text-white">8 STEPS</h3>
+                <p className="text-sm text-neutral-400">INFOGRAPHIC</p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Connection Lines */}
+          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <circle 
+              cx="50%" 
+              cy="50%" 
+              r="210" 
+              fill="none" 
+              stroke="url(#circleGradient)" 
+              strokeWidth="1" 
+              strokeDasharray="5,5" 
+              className="animate-reverse-slow-spin" 
+            />
+            <defs>
+              <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#4338ca" />
+                <stop offset="50%" stopColor="#06b6d4" />
+                <stop offset="100%" stopColor="#22c55e" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          {/* Options around the circle */}
+          {circleOptions.map((option, index) => {
+            // Calculate angle for positioning (starting from top, going clockwise)
+            const angle = (Math.PI * 2 * index) / circleOptions.length - Math.PI / 2;
+            
+            return (
+              <CircleOption
+                key={index}
+                icon={option.icon}
+                title={option.title}
+                description={option.description}
+                color={option.color}
+                index={index}
+                isActive={activeOptionIndex === index}
+                onClick={() => setActiveOptionIndex(index)}
+                angle={angle}
+              />
+            );
+          })}
+        </div>
+
+        {/* Step Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
+          {stepCards.map((step, index) => (
+            <StepCard
               key={index}
-              icon={solution.icon}
-              title={solution.title}
-              description={solution.description}
-              badgeText={solution.badgeText}
-              delay={solution.delay}
+              number={step.number}
+              icon={step.icon}
+              title={step.title}
+              description={step.description}
+              color={step.color}
+              delay={step.delay}
             />
           ))}
         </div>

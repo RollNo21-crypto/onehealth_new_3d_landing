@@ -67,6 +67,8 @@ export default {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'gradient': 'gradient 15s ease infinite',
         'highlight': 'highlight 3s ease-in-out infinite',
+        'slow-spin': 'spin 20s linear infinite',
+        'reverse-slow-spin': 'reverse-spin 25s linear infinite',
       },
       keyframes: {
         float: {
@@ -81,6 +83,14 @@ export default {
         highlight: {
           '0%, 100%': { backgroundColor: 'transparent' },
           '50%': { backgroundColor: 'rgba(109, 40, 217, 0.1)' },
+        },
+        spin: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'reverse-spin': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(-360deg)' },
         },
       },
       boxShadow: {

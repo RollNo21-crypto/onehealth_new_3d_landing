@@ -61,8 +61,8 @@ function App() {
           <main>
             <HeroSection />
             <MissionVisionSection />
-            <SolutionsSection />
             <BenefitsSection />
+            <SolutionsSection />
             <ServicesProductsSection />
             <PartnersSection />
             <InfrastructureSection />
