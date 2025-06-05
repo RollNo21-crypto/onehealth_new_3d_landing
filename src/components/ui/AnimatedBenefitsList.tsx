@@ -78,9 +78,9 @@ const Benefit = ({ name, description, icon, color, time }: BenefitItem) => {
         // animation styles
         "transition-all duration-200 ease-in-out hover:scale-[103%]",
         // light styles
-        "bg-neutral-900/50 backdrop-blur-sm border border-neutral-800 hover:border-primary-500/50",
+        "bg-white backdrop-blur-sm border border-neutral-200 hover:border-primary-500/50 text-neutral-900 shadow-lg",
         // dark styles
-        "transform-gpu dark:bg-transparent dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
+        "transform-gpu dark:bg-white/95 dark:backdrop-blur-md dark:border-neutral-200 dark:shadow-xl",
       )}
     >
       <div className="flex flex-row items-center gap-3">
@@ -93,12 +93,12 @@ const Benefit = ({ name, description, icon, color, time }: BenefitItem) => {
           <span className="text-lg">{icon}</span>
         </div>
         <div className="flex flex-col overflow-hidden">
-          <figcaption className="flex flex-row items-center whitespace-pre text-lg font-medium text-white">
+          <figcaption className="flex flex-row items-center whitespace-pre text-lg font-medium text-neutral-900">
             <span className="text-sm sm:text-lg">{name}</span>
             <span className="mx-1">·</span>
-            <span className="text-xs text-gray-500">{time}</span>
+            <span className="text-xs text-neutral-500">{time}</span>
           </figcaption>
-          <p className="text-sm font-normal text-neutral-400">
+          <p className="text-sm font-normal text-neutral-600">
             {description}
           </p>
         </div>
@@ -125,8 +125,8 @@ export function AnimatedBenefitsList({
         ))}
       </AnimatedList>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-neutral-950 to-transparent"></div>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-neutral-950 to-transparent"></div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-white to-transparent"></div>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-white to-transparent"></div>
     </div>
   );
 }

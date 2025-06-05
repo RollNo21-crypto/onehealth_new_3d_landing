@@ -307,7 +307,7 @@ export const ContactSection = () => {
                 Send Us a Message
               </h3>
               
-              <div className="bg-neutral-900/50 backdrop-blur-sm rounded-2xl border border-neutral-800 p-6 md:p-8 mb-8">
+              <div className="bg-neutral-800/50 backdrop-blur-sm rounded-2xl border border-neutral-700 p-6 md:p-8 mb-8 text-neutral-50">
                 {formState === 'success' ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -451,7 +451,7 @@ export const ContactSection = () => {
                 Contact Information
               </h3>
               
-              <div className="bg-neutral-900/50 backdrop-blur-sm rounded-2xl border border-neutral-800 p-6 md:p-8">
+              <div className="bg-neutral-800/50 backdrop-blur-sm rounded-2xl border border-neutral-700 p-6 md:p-8 text-neutral-50">
                 <div className="space-y-6">
                   {contactInfo.map((item, index) => (
                     <motion.div
@@ -488,7 +488,7 @@ export const ContactSection = () => {
               Visit Our Office
             </h3>
             
-            <div className="bg-neutral-900/50 backdrop-blur-sm rounded-2xl border border-neutral-800 p-6 md:p-8 relative overflow-hidden">
+            <div className="bg-neutral-800/50 backdrop-blur-sm rounded-2xl border border-neutral-700 p-6 md:p-8 relative overflow-hidden text-neutral-50">
               <div className="absolute inset-0 bg-primary-500/5"></div>
               <div className="relative">
                 {/* Office Photos Carousel */}
@@ -496,7 +496,7 @@ export const ContactSection = () => {
               </div>
             </div>
             
-            <div className="bg-neutral-900/50 backdrop-blur-sm rounded-2xl border border-neutral-800 p-6 md:p-8 relative overflow-hidden flex-grow mt-8">
+            <div className="bg-neutral-800/50 backdrop-blur-sm rounded-2xl border border-neutral-700 p-6 md:p-8 relative overflow-hidden flex-grow mt-8 text-neutral-50">
               <div className="absolute inset-0 bg-primary-500/5"></div>
               <div className="relative h-full">
                 <div className="w-full h-full rounded-lg overflow-hidden">

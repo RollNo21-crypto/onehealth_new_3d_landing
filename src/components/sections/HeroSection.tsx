@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
 import { ChevronDown } from 'lucide-react';
-import { Globe } from '../ui/Globe';
+import { GlobeDemo } from './GlobeDemo';
 
 export const HeroSection = () => {
   const globeRef = useRef<HTMLDivElement>(null);
@@ -22,9 +22,9 @@ export const HeroSection = () => {
   return (
     <section id="hero" className="min-h-screen relative flex items-center overflow-hidden pt-24 pb-16">
       <div className="absolute inset-0 bg-background">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-900/40 via-background to-background"></div>
-        <div className="absolute inset-0 opacity-30 animate-gradient bg-[length:400%_400%]" style={{ 
-          backgroundImage: 'radial-gradient(circle at 20% 30%, rgba(109, 40, 217, 0.4) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(34, 211, 238, 0.4) 0%, transparent 40%)' 
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-100 via-background to-background"></div>
+        <div className="absolute inset-0 opacity-40 animate-gradient bg-[length:400%_400%]" style={{ 
+          backgroundImage: 'radial-gradient(circle at 20% 30%, rgba(79, 70, 229, 0.15) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.15) 0%, transparent 40%)' 
         }}></div>
       </div>
 
@@ -37,7 +37,7 @@ export const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-6"
             >
-              <span className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-500/30 border border-primary-500/20 rounded-full text-primary-400">
+              <span className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-100 border border-primary-200 rounded-full text-black">
                 Transforming Global Health
               </span>
             </motion.div>
@@ -47,7 +47,7 @@ export const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight text-white mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight text-black mb-6">
                 <Typewriter
                   options={{
                     strings: ['One Health. One Vision. One Future.'],
@@ -64,7 +64,7 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-lg md:text-xl text-neutral-300 mb-8 max-w-xl"
+              className="text-lg md:text-xl text-black mb-8 max-w-xl"
             >
               We're pioneering cutting-edge technologies to create a unified vision for global health, bringing together science, data, and human expertise.
             </motion.p>
@@ -79,7 +79,7 @@ export const HeroSection = () => {
                 href="#contact"
                 whileHover={{ scale: 1.05, boxShadow: '0 0 20px 5px rgba(109, 40, 217, 0.4)' }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-full shadow-glow transition-all"
+                className="px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-full shadow-md transition-all"
               >
                 Get Started
               </motion.a>
@@ -87,7 +87,7 @@ export const HeroSection = () => {
                 href="#solutions"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-transparent border border-neutral-700 hover:border-primary-500 text-white font-medium rounded-full hover:bg-primary-500/10 transition-all flex items-center gap-2"
+                className="px-8 py-3 bg-transparent border border-neutral-300 hover:border-primary-500 text-black font-medium rounded-full hover:bg-primary-100 transition-all flex items-center gap-2"
               >
                 Explore Solutions
               </motion.a>
@@ -95,8 +95,8 @@ export const HeroSection = () => {
           </div>
 
           <div className="flex justify-center lg:justify-end relative">
-            <div ref={globeRef} className="relative w-full max-w-md h-[400px]">
-              <Globe className="animate-float" />
+            <div ref={globeRef} className="relative w-full">
+              <GlobeDemo />
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@ export const HeroSection = () => {
             transition={{ repeat: Infinity, duration: 2 }}
           >
             <a href="#solutions" aria-label="Scroll down">
-              <ChevronDown size={32} className="text-neutral-400" />
+              <ChevronDown size={32} className="text-neutral-600" />
             </a>
           </motion.div>
         </motion.div>

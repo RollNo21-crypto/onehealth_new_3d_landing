@@ -182,7 +182,7 @@ const PartnerLogo = ({ partner, index }) => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
     viewport={{ once: true }}
-    className="group relative overflow-hidden rounded-2xl bg-neutral-900/50 backdrop-blur-sm border border-neutral-800 p-8 hover:border-primary-500/50 transition-all duration-300"
+    className="group relative overflow-hidden rounded-2xl bg-neutral-800/50 backdrop-blur-sm border border-neutral-700 p-8 hover:border-primary-500/50 transition-all duration-300 text-neutral-50"
   >
     <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-secondary-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
     <div className="relative flex items-center justify-center h-20">

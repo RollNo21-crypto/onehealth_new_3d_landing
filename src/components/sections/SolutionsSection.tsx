@@ -108,16 +108,16 @@ const CircleOption: React.FC<CircleOptionProps> = ({
         className={`flex flex-col items-center w-36 rounded-full ${isActive ? 'scale-110' : 'scale-100'} transition-all duration-300`}
       >
         <div 
-          className={`flex items-center justify-center w-20 h-20 rounded-full shadow-lg transition-all duration-300 ${isActive ? 'ring-4 ring-white/20' : ''}`}
+          className={`flex items-center justify-center w-20 h-20 rounded-full shadow-lg transition-all duration-300 ${isActive ? 'ring-4 ring-primary-100' : ''}`}
           style={{ backgroundColor: color }}
         >
-          <div className="text-white">
+          <div className="text-white text-opacity-90">
             {icon}
           </div>
         </div>
-        <div className="mt-3 text-center bg-neutral-900/80 backdrop-blur-sm px-3 py-2 rounded-lg border border-neutral-800/50">
-          <h4 className="text-sm font-bold text-white">{title}</h4>
-          <p className="text-xs text-neutral-400 mt-1 max-w-[140px]">{description}</p>
+        <div className="mt-3 text-center bg-white shadow-lg px-3 py-2 rounded-lg border border-neutral-100 text-black">
+          <h4 className="text-sm font-bold text-black">{title}</h4>
+          <p className="text-xs text-black mt-1 max-w-[140px]">{description}</p>
         </div>
       </div>
     </motion.div>
@@ -148,29 +148,28 @@ const StepCard: React.FC<StepCardProps> = ({ number, icon, title, description, c
       className="relative group"
     >
       <div 
-        className="relative overflow-hidden rounded-xl border border-neutral-800 p-4 transition-all duration-300 h-full"
-        style={{ backgroundColor: 'rgba(18, 18, 18, 0.6)' }}
+        className="relative overflow-hidden rounded-xl border border-neutral-100 p-4 transition-all duration-300 h-full text-black bg-white shadow-lg"
       >
         <div className="flex items-center mb-3">
           <div 
-            className="flex items-center justify-center w-8 h-8 rounded-full text-white font-bold text-sm mr-2"
+            className="flex items-center justify-center w-8 h-8 rounded-full text-white font-bold text-sm mr-2 shadow-md"
             style={{ backgroundColor: color }}
           >
             {number}
           </div>
           <div 
-            className="flex items-center justify-center w-8 h-8 rounded-full mr-2"
-            style={{ backgroundColor: `${color}30` }}
+            className="flex items-center justify-center w-8 h-8 rounded-full mr-2 shadow-sm"
+            style={{ backgroundColor: `${color}15` }}
           >
-            <div className="text-white">
+            <div style={{ color: color }}>
               {icon}
             </div>
           </div>
-          <h3 className="text-sm font-bold text-white">
+          <h3 className="text-sm font-bold text-black">
             {title}
           </h3>
         </div>
-        <p className="text-xs text-neutral-400">
+        <p className="text-xs text-black">
           {description}
         </p>
       </div>
@@ -204,42 +203,42 @@ export const SolutionsSection = () => {
       icon: <CheckCircle size={isMobile ? 20 : 24} />,
       title: "Quality Assurance",
       description: "Ensuring highest standards through rigorous testing and validation.",
-      color: "#4338ca", // indigo-700
+      color: "#4f46e5", // indigo-600
     },
     {
       number: 2,
       icon: <Brain size={isMobile ? 20 : 24} />,
       title: "AI Integration",
       description: "Advanced neural networks for intelligent decision support.",
-      color: "#6366f1", // indigo-500
+      color: "#7c3aed", // violet-600
     },
     {
       number: 3,
       icon: <Microscope size={isMobile ? 20 : 24} />,
       title: "Research Platform",
       description: "Collaborative environment for accelerating discoveries.",
-      color: "#8b5cf6", // violet-500
+      color: "#2563eb", // blue-600
     },
     {
       number: 4,
       icon: <Shield size={isMobile ? 20 : 24} />,
       title: "Security Framework",
       description: "Military-grade protection for sensitive patient data.",
-      color: "#10b981", // emerald-500
+      color: "#0891b2", // cyan-600
     },
     {
       number: 5,
       icon: <Globe size={isMobile ? 20 : 24} />,
       title: "Global Reach",
       description: "Solutions that work across diverse geographic regions.",
-      color: "#22c55e", // green-500
+      color: "#0d9488", // teal-600
     },
     {
       number: 6,
       icon: <Zap size={isMobile ? 20 : 24} />,
       title: "Performance Boost",
       description: "Optimized systems for maximum efficiency and speed.",
-      color: "#84cc16", // lime-500
+      color: "#16a34a", // green-600
     },
   ];
 
@@ -254,14 +253,14 @@ export const SolutionsSection = () => {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="relative w-48 h-48 rounded-full flex items-center justify-center bg-neutral-900 border border-neutral-800 shadow-xl"
+            className="relative w-48 h-48 rounded-full flex items-center justify-center bg-white border border-neutral-100 shadow-2xl text-black"
           >
             <div className="absolute inset-0 rounded-full overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-400/20"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 via-secondary-400/15 to-green-500/10"></div>
             </div>
             <div className="text-center">
-              <h3 className="text-xl font-bold text-white">6 STEPS</h3>
-              <p className="text-sm text-neutral-400">INFOGRAPHIC</p>
+              <h3 className="text-xl font-bold text-black">6 STEPS</h3>
+              <p className="text-sm text-black">INFOGRAPHIC</p>
             </div>
           </motion.div>
         </div>
@@ -275,7 +274,7 @@ export const SolutionsSection = () => {
             r="100" 
             fill="none" 
             stroke="url(#circleGradient)" 
-            strokeWidth="1" 
+            strokeWidth="1.5" 
             strokeDasharray="3,3" 
           />
           {/* Middle Circle */}
@@ -285,7 +284,7 @@ export const SolutionsSection = () => {
             r="170" 
             fill="none" 
             stroke="url(#circleGradient)" 
-            strokeWidth="1" 
+            strokeWidth="1.5" 
             strokeDasharray="4,4" 
           />
           {/* Outer Circle - Where components are arranged */}
@@ -295,14 +294,14 @@ export const SolutionsSection = () => {
             r="230" 
             fill="none" 
             stroke="url(#circleGradient)" 
-            strokeWidth="1" 
+            strokeWidth="1.5" 
             strokeDasharray="5,5" 
           />
           <defs>
             <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#4338ca" />
-              <stop offset="50%" stopColor="#06b6d4" />
-              <stop offset="100%" stopColor="#22c55e" />
+              <stop offset="0%" stopColor="#4f46e5" />
+              <stop offset="50%" stopColor="#0891b2" />
+              <stop offset="100%" stopColor="#16a34a" />
             </linearGradient>
           </defs>
         </svg>
@@ -365,7 +364,7 @@ export const SolutionsSection = () => {
           {solutionSteps.map((_, index) => (
             <motion.button
               key={index}
-              className={`w-3 h-3 rounded-full ${index === activeStep ? 'bg-primary-500' : 'bg-neutral-700'}`}
+              className={`w-3 h-3 rounded-full ${index === activeStep ? 'bg-primary-600' : 'bg-neutral-300'}`}
               onClick={() => setActiveStep(index)}
               whileTap={{ scale: 0.9 }}
             />
@@ -377,7 +376,7 @@ export const SolutionsSection = () => {
           <div className="flex justify-between items-center absolute inset-x-0 top-1/2 transform -translate-y-1/2 z-10 px-2">
             <motion.button 
               onClick={prevStep}
-              className="w-10 h-10 rounded-full bg-neutral-800/80 backdrop-blur-sm flex items-center justify-center text-white shadow-lg"
+              className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-neutral-900 shadow-lg"
               whileTap={{ scale: 0.9 }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -386,7 +385,7 @@ export const SolutionsSection = () => {
             </motion.button>
             <motion.button 
               onClick={nextStep}
-              className="w-10 h-10 rounded-full bg-neutral-800/80 backdrop-blur-sm flex items-center justify-center text-white shadow-lg"
+              className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-neutral-900 shadow-lg"
               whileTap={{ scale: 0.9 }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -406,28 +405,28 @@ export const SolutionsSection = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="bg-neutral-900/80 backdrop-blur-sm border border-neutral-800 rounded-xl p-6 shadow-lg"
+                  className="bg-white border border-neutral-100 rounded-xl p-6 shadow-lg text-black"
                 >
                   <div className="flex items-center mb-5">
                     <div 
-                      className="flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-base mr-4"
+                      className="flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-base mr-4 shadow-md"
                       style={{ backgroundColor: step.color }}
                     >
                       {step.number}
                     </div>
                     <div 
-                      className="flex items-center justify-center w-12 h-12 rounded-full mr-4"
-                      style={{ backgroundColor: `${step.color}30` }}
+                      className="flex items-center justify-center w-12 h-12 rounded-full mr-4 shadow-sm"
+                      style={{ backgroundColor: `${step.color}15` }}
                     >
-                      <div className="text-white">
+                      <div style={{ color: step.color }}>
                         {step.icon}
                       </div>
                     </div>
-                    <h3 className="text-lg font-bold text-white">
+                    <h3 className="text-lg font-bold text-black">
                       {step.title}
                     </h3>
                   </div>
-                  <p className="text-base text-neutral-300 leading-relaxed">
+                  <p className="text-base text-black leading-relaxed">
                     {step.description}
                   </p>
                 </motion.div>
@@ -443,11 +442,11 @@ export const SolutionsSection = () => {
               key={index}
               whileTap={{ scale: 0.95 }}
               onClick={() => setActiveStep(index)}
-              className={`p-3 rounded-lg ${activeStep === index ? 'bg-neutral-800 ring-2 ring-primary-500/50' : 'bg-neutral-900/50'}`}
+              className={`p-3 rounded-lg ${activeStep === index ? 'bg-neutral-50 ring-2 ring-primary-500/50' : 'bg-white shadow'} text-black`}
             >
               <div 
                 className="w-10 h-10 mx-auto rounded-full flex items-center justify-center mb-1"
-                style={{ backgroundColor: step.color + (activeStep === index ? '' : '40') }}
+                style={{ backgroundColor: activeStep === index ? step.color : `${step.color}20` }}
               >
                 <span className="text-white text-sm font-bold">{step.number}</span>
               </div>
@@ -461,8 +460,8 @@ export const SolutionsSection = () => {
   return (
     <section id="solutions" className="py-20 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-background">
-        <div className="absolute inset-0 opacity-20" style={{ 
-          backgroundImage: 'radial-gradient(circle at 50% 30%, rgba(34, 211, 238, 0.3) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.3) 0%, transparent 40%)'
+        <div className="absolute inset-0 opacity-40" style={{ 
+          backgroundImage: 'radial-gradient(circle at 50% 30%, rgba(79, 70, 229, 0.15) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.15) 0%, transparent 40%)'
         }}></div>
       </div>
 
@@ -473,7 +472,7 @@ export const SolutionsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-500/30 border border-primary-500/20 rounded-full text-primary-400 inline-block mb-4"
+            className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-100 border border-primary-200 rounded-full text-black inline-block mb-4"
           >
             Our Solutions
           </motion.span>
@@ -482,7 +481,7 @@ export const SolutionsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-2xl md:text-4xl font-display font-bold text-white mb-4 md:mb-6"
+            className="text-2xl md:text-4xl font-display font-bold text-black mb-4 md:mb-6"
           >
             8 Steps Infographic Solution
           </motion.h2>
@@ -491,7 +490,7 @@ export const SolutionsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-neutral-400 text-base md:text-lg"
+            className="text-black text-base md:text-lg"
           >
             Our comprehensive ecosystem of products and services works together to create
             a unified approach to global health challenges.

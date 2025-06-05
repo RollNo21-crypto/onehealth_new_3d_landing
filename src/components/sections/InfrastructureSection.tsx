@@ -75,7 +75,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ year, title, description, i
       </div>
       <motion.div 
         variants={itemVariants}
-        className="bg-neutral-900 border border-neutral-800 rounded-xl p-6 mb-10 flex-1 hover:border-primary-500/30 hover:shadow-glow transition-all duration-300"
+        className="bg-neutral-800 border border-neutral-700 rounded-xl p-6 mb-10 flex-1 hover:border-primary-500/30 hover:shadow-glow transition-all duration-300 text-neutral-50"
         whileHover={{ y: -5, boxShadow: "0 0 20px rgba(109, 40, 217, 0.3)" }}
       >
         <motion.span 
@@ -156,7 +156,7 @@ const InfographicItem: React.FC<InfographicItemProps> = ({ icon, title, descript
       animate={controls}
       variants={containerVariants}
       whileHover={{ y: -5, boxShadow: "0 0 20px rgba(109, 40, 217, 0.3)" }}
-      className="bg-neutral-900 border border-neutral-800 rounded-xl p-6 hover:border-primary-500/30 hover:shadow-glow transition-all duration-300"
+      className="bg-neutral-800 border border-neutral-700 rounded-xl p-6 hover:border-primary-500/30 hover:shadow-glow transition-all duration-300 text-neutral-50"
     >
       <motion.div 
         variants={itemVariants}
@@ -342,7 +342,7 @@ export const InfrastructureSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden"
+          className="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden text-neutral-50"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="p-8 md:p-12">
@@ -431,7 +431,7 @@ export const InfrastructureSection = () => {
                       </div>
                     </AnimatedSpan>
                   ))}
-                  <AnimatedSpan delay={6000} className="block mt-5 border-t border-neutral-800 pt-3">
+                  <AnimatedSpan delay={6000} className="block mt-5 border-t border-neutral-700 pt-3">
                     <TypingAnimation duration={20} delay={6000} className="text-green-400 font-mono font-semibold">✓ All systems operational</TypingAnimation>
                     <motion.div
                       initial={{ width: 0 }}

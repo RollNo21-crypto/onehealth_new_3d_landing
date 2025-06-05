@@ -40,7 +40,7 @@ export const FloatingActionButton = () => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.8, y: 10 }}
                 transition={{ duration: 0.2 }}
-                className="mb-4 bg-neutral-900/90 backdrop-blur-md rounded-lg p-2 shadow-lg"
+                className="mb-4 bg-neutral-800/90 backdrop-blur-md rounded-lg p-2 shadow-lg text-neutral-50"
               >
                 <ul className="flex flex-col gap-2">
                   {quickNavItems.map((item, index) => (

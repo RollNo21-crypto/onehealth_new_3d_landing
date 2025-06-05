@@ -4,10 +4,10 @@
 
 /* Custom styles */
 .terminal-glow {
-  box-shadow: 0 0 20px rgba(109, 40, 217, 0.2);
+  box-shadow: 0 0 20px rgba(109, 40, 217, 0.3);
   transition: box-shadow 0.3s ease;
 }
 
 .terminal-glow:hover {
-  box-shadow: 0 0 30px rgba(109, 40, 217, 0.4);
+  box-shadow: 0 0 30px rgba(109, 40, 217, 0.5);
 }

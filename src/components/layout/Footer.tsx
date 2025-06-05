@@ -43,7 +43,7 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="bg-neutral-900 pt-16 pb-8 px-6 md:px-12">
+    <footer className="bg-neutral-800 pt-16 pb-8 px-6 md:px-12 text-neutral-50">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2">
@@ -93,7 +93,7 @@ export const Footer = () => {
           ))}
         </div>
 
-        <div className="mt-12 pt-8 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="mt-12 pt-8 border-t border-neutral-700 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-neutral-500 text-sm">
             © {currentYear} OneHealth. All rights reserved.
           </div>

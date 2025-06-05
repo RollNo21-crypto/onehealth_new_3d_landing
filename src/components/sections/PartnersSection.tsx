@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const PartnerLogo: React.FC<{ name: string; logo: string }> = ({ name, logo }) => {
   return (
     <div className="flex items-center justify-center px-8 py-4">
-      <div className="bg-neutral-900/80 rounded-xl p-4 h-20 w-40 flex items-center justify-center group transition-all duration-300 hover:bg-neutral-800 hover:shadow-glow-sm">
+      <div className="bg-neutral-800/80 rounded-xl p-4 h-20 w-40 flex items-center justify-center group transition-all duration-300 hover:bg-neutral-700 hover:shadow-glow-sm text-neutral-50">
         <div className="text-2xl font-bold text-neutral-300 group-hover:text-white transition-colors duration-300">{logo}</div>
         <span className="sr-only">{name}</span>
       </div>
@@ -62,7 +62,7 @@ export const PartnersSection = () => {
   ];
 
   return (
-    <section id="partners" className="py-16 relative overflow-hidden bg-neutral-900">
+    <section id="partners" className="py-16 relative overflow-hidden bg-neutral-800">
       <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background opacity-70 z-10"></div>
       
       <div className="container mx-auto px-6 md:px-12 relative z-20 mb-8">

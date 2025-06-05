@@ -34,10 +34,10 @@ const networkDotsStyle = {
 
 export const BenefitsSection = () => {
   return (
-    <section id="benefits" className="py-20 md:py-32 relative overflow-hidden bg-neutral-950">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-neutral-950 to-background opacity-80"></div>
-      <div className="absolute inset-0 opacity-10" style={{ 
-        backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
+    <section id="benefits" className="py-20 md:py-32 relative overflow-hidden bg-white">
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-neutral-50 to-white opacity-80"></div>
+      <div className="absolute inset-0 opacity-5" style={{ 
+        backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%236d28d9" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
       }}></div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -47,7 +47,7 @@ export const BenefitsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-500/30 border border-primary-500/20 rounded-full text-primary-400 inline-block mb-4"
+            className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-100 border border-primary-200 rounded-full text-primary-700 inline-block mb-4"
           >
             Key Benefits
           </motion.span>
@@ -56,7 +56,7 @@ export const BenefitsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-display font-bold text-white mb-6"
+            className="text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-6"
           >
             Why Choose Our Approach
           </motion.h2>
@@ -65,7 +65,7 @@ export const BenefitsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-neutral-400 text-lg"
+            className="text-neutral-600 text-lg"
           >
             Our integrated approach delivers tangible benefits across the entire healthcare ecosystem,
             from patients to providers to researchers.
@@ -157,22 +157,24 @@ export const BenefitsSection = () => {
           viewport={{ once: true }}
           className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary-600 to-secondary-600 p-1"
         >
-          <div className="bg-neutral-900 rounded-[1.4rem] p-8 md:p-12">
+          <div className="bg-white rounded-[1.4rem] p-8 md:p-12 text-neutral-900 shadow-xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
-                <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-6">
-                  Ready to transform your health systems?
+                <h3 className="text-2xl md:text-3xl font-display font-bold text-neutral-900 mb-6">
+                  Discover Medical Events & Conferences
                 </h3>
-                <p className="text-neutral-300 mb-8">
-                  Join the hundreds of organizations already benefiting from our integrated approach to healthcare innovation.
+                <p className="text-neutral-600 mb-8">
+                  Stay updated with the latest medical conferences, surgical workshops, and healthcare innovation events worldwide.
                 </p>
                 <motion.a
-                  href="#contact"
+                  href="https://events.posspole.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.05, boxShadow: '0 0 20px 5px rgba(109, 40, 217, 0.4)' }}
                   whileTap={{ scale: 0.95 }}
                   className="inline-block px-8 py-3 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-full shadow-glow transition-all"
                 >
-                  Schedule a Demo
+                  Explore Events
                 </motion.a>
               </div>
               <div className="relative h-full min-h-[200px] flex items-center justify-center">
@@ -198,9 +200,14 @@ export const BenefitsSection = () => {
                   }}
                   className="absolute w-60 h-60 md:w-64 md:h-64 rounded-full bg-gradient-to-r from-secondary-400/20 to-primary-500/20 blur-lg"
                 />
-                <div className="relative z-10 text-center">
+                <div className="relative z-10 bg-white rounded-2xl shadow-lg p-6 transform hover:scale-105 transition-transform duration-300">
+                  <img 
+                    src="/images/stats-chart.png" 
+                    alt="Statistics Chart"
+                    className="w-24 h-24 mx-auto mb-4 rounded-xl"
+                  />
                   <span className="block text-6xl md:text-7xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-300">98%</span>
-                  <span className="text-xl text-white">Customer Retention</span>
+                  <span className="text-xl text-neutral-900 mt-2 block">Customer Retention</span>
                 </div>
               </div>
             </div>

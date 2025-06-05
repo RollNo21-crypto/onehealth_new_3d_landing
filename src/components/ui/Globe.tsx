@@ -56,8 +56,18 @@ export const Globe: React.FC<GlobeProps> = ({ className = '' }) => {
         
         // Create texture with Earth map using our React component
         const textureLoader = new THREE.TextureLoader();
-        // Use the Earth texture from our React component
-        const earthTextureUrl = getEarthTextureUrl();
+        // Use a grey colored Earth texture
+        const earthTextureUrl = '/earth-texture.svg';
+        // Apply grey color to the texture
+        const material = new THREE.MeshPhongMaterial({
+          map: textureLoader.load(earthTextureUrl),
+          color: 0x1a1a40,      // Dark blue base color
+          emissive: 0x6d28d9,    // Purple emissive glow
+          emissiveIntensity: 0.7, // Emissive intensity for better texture visibility
+          bumpScale: 0.1,
+          specular: new THREE.Color('grey'),
+          shininess: 5
+        });
         const earthTexture = textureLoader.load(earthTextureUrl);
         
         // Create a base material with a dark blue color

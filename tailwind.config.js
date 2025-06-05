@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#0A0A0A',
+        background: '#FFFFFF', // Changed from dark to white
         primary: {
           50: '#F3EBFF',
           100: '#E5D4FF',
@@ -39,17 +39,17 @@ export default {
           500: '#EF4444',
         },
         neutral: {
-          50: '#f8f8f8',
-          100: '#e6e6e6',
-          200: '#cccccc',
-          300: '#b3b3b3',
-          400: '#999999',
-          500: '#808080',
-          600: '#666666',
-          700: '#4d4d4d',
-          800: '#333333',
-          900: '#1a1a1a',
-          950: '#0d0d0d',
+          50: '#FFFFFF',
+          100: '#F9FAFB',
+          200: '#F3F4F6',
+          300: '#E5E7EB',
+          400: '#D1D5DB',
+          500: '#9CA3AF',
+          600: '#6B7280',
+          700: '#4B5563',
+          800: '#374151',
+          900: '#1F2937',
+          950: '#111827',
         },
       },
       fontFamily: {

@@ -36,7 +36,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ icon, title, description, cat
       className="relative group"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-400/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-500"></div>
-      <div className="relative overflow-hidden rounded-2xl bg-neutral-900 border border-neutral-800 group-hover:border-primary-500/50 p-6 transition-all duration-300 h-full">
+      <div className="relative overflow-hidden rounded-2xl bg-neutral-800 border border-neutral-700 group-hover:border-primary-500/50 p-6 transition-all duration-300 h-full text-neutral-50">
         <div className="absolute top-4 right-4 px-2 py-1 text-xs font-semibold bg-neutral-800 text-neutral-300 rounded-full">
           {category}
         </div>
@@ -128,7 +128,7 @@ export const ServicesProductsSection = () => {
   ];
 
   return (
-    <section id="services-products" className="py-20 md:py-32 relative overflow-hidden bg-neutral-950">
+    <section id="services-products" className="py-20 md:py-32 relative overflow-hidden bg-neutral-900">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-neutral-950 to-background opacity-80"></div>
       <div className="absolute inset-0 opacity-10" style={{ 
         backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%239C92AC\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'

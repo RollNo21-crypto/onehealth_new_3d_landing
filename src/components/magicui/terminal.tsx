@@ -100,11 +100,11 @@ export const Terminal = ({ children, className }: TerminalProps) => {
   return (
     <div
       className={cn(
-        "z-0 h-full max-h-[400px] w-full max-w-lg rounded-xl border border-neutral-800 bg-neutral-950/90 backdrop-blur-sm",
+        "z-0 h-full max-h-[400px] w-full max-w-lg rounded-xl border border-neutral-300 bg-neutral-100/90 backdrop-blur-sm text-neutral-800",
         className,
       )}
     >
-      <div className="flex flex-col gap-y-2 border-b border-neutral-800 p-3">
+      <div className="flex flex-col gap-y-2 border-b border-neutral-300 p-3">
         <div className="flex flex-row gap-x-2">
           <motion.div 
             className="h-3 w-3 rounded-full bg-red-500"
