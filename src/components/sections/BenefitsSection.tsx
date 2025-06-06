@@ -198,17 +198,17 @@ export const BenefitsSection = () => {
                     rotate: { repeat: Infinity, duration: 15, ease: "linear" },
                     scale: { repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }
                   }}
-                  className="absolute w-60 h-60 md:w-64 md:h-64 rounded-full bg-gradient-to-r from-secondary-400/20 to-primary-500/20 blur-lg"
+                  className="absolute w-50 h-50 md:w-64 md:h-64 rounded-full bg-gradient-to-r from-secondary-400/20 to-primary-500/20 blur-lg"
                 />
-                <div className="relative z-10 bg-white rounded-2xl shadow-lg p-6 transform hover:scale-105 transition-transform duration-300">
+                <div className="w-80 h-80 mx-auto rounded-full overflow-hidden border-4 border-white shadow-xl transform hover:scale-105 transition-transform duration-300">
                   <img 
-                    src="/images/stats-chart.png" 
-                    alt="Statistics Chart"
-                    className="w-24 h-24 mx-auto mb-4 rounded-xl"
+                    src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80"
+                    alt="Doctor giving medical lecture at conference"
+                    className="w-full h-full object-cover"
                   />
-                  <span className="block text-6xl md:text-7xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-300">98%</span>
-                  <span className="text-xl text-neutral-900 mt-2 block">Customer Retention</span>
                 </div>
+                {/* <span className="block text-6xl md:text-7xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-300">98%</span>
+                <span className="text-xl text-neutral-900 mt-2 block">Customer Retention</span> */}
               </div>
             </div>
           </div>

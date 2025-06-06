@@ -1,8 +1,120 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Layers, Database, Lock, Share2, Network, Server, Cloud, Shield } from 'lucide-react';
+import { Layers, Database, Lock, Share2, Network, Server, Cloud, Shield, ChevronLeft, ChevronRight } from 'lucide-react';
 import { AnimatedSpan, Terminal, TypingAnimation } from "@/components/magicui/terminal";
+
+// Infrastructure Images Carousel Component
+const InfrastructureCarousel: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  
+  // Infrastructure images array
+  const infrastructureImages = [
+    {
+      url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2034&q=80",
+      alt: "Modern server room with blue lighting"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      alt: "Network infrastructure and cables"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+      alt: "Data center with server racks"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      alt: "Healthcare technology dashboard"
+    }
+  ];
+  
+  const totalImages = infrastructureImages.length;
+  
+  // Auto-scroll every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+  
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => {
+      const nextIndex = prevIndex + 1;
+      return nextIndex >= totalImages ? 0 : nextIndex;
+    });
+  };
+  
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => {
+      const nextIndex = prevIndex - 1;
+      return nextIndex < 0 ? totalImages - 1 : nextIndex;
+    });
+  };
+  
+  return (
+    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg">
+      <div 
+        ref={carouselRef}
+        className="overflow-hidden w-full h-full"
+      >
+        <div 
+          className="flex transition-transform duration-500 ease-in-out h-full"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {infrastructureImages.map((image, index) => (
+            <div 
+              key={index}
+              className="flex-shrink-0 w-full h-full"
+            >
+              <img 
+                src={image.url} 
+                alt={image.alt}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent">
+                <div className="absolute bottom-8 left-8 text-white">
+                  <h3 className="text-xl font-bold mb-2">{image.alt}</h3>
+                  <p className="text-sm text-white/80">Powering healthcare innovation with enterprise infrastructure</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Navigation buttons */}
+      <button 
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full p-2 shadow-lg z-10 transition-all duration-300"
+        aria-label="Previous image"
+      >
+        <ChevronLeft size={20} />
+      </button>
+      <button 
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full p-2 shadow-lg z-10 transition-all duration-300"
+        aria-label="Next image"
+      >
+        <ChevronRight size={20} />
+      </button>
+      
+      {/* Indicators */}
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+        {infrastructureImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-white scale-125' : 'bg-white/50'}`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 interface TimelineItemProps {
   year: string;
@@ -69,30 +181,30 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ year, title, description, i
             initial={{ height: 0 }}
             animate={{ height: "100%" }}
             transition={{ duration: 1, delay: (index * 0.3) + 0.5 }}
-            className="w-0.5 bg-neutral-800 mt-2"
+            className="w-0.5 bg-neutral-300 mt-2"
           />
         )}
       </div>
       <motion.div 
         variants={itemVariants}
-        className="bg-neutral-800 border border-neutral-700 rounded-xl p-6 mb-10 flex-1 hover:border-primary-500/30 hover:shadow-glow transition-all duration-300 text-neutral-50"
-        whileHover={{ y: -5, boxShadow: "0 0 20px rgba(109, 40, 217, 0.3)" }}
+        className="bg-white border border-neutral-200 rounded-xl p-6 mb-10 flex-1 hover:border-primary-300 hover:shadow-lg transition-all duration-300 text-neutral-900"
+        whileHover={{ y: -5, boxShadow: "0 0 20px rgba(109, 40, 217, 0.15)" }}
       >
         <motion.span 
           variants={itemVariants}
-          className="px-3 py-1 text-xs font-semibold bg-primary-500/20 text-primary-400 rounded-full mb-4 inline-block"
+          className="px-3 py-1 text-xs font-semibold bg-primary-100 text-primary-700 rounded-full mb-4 inline-block"
         >
           {year}
         </motion.span>
         <motion.h3 
           variants={itemVariants}
-          className="text-xl font-display font-bold text-white mb-3"
+          className="text-xl font-display font-bold text-neutral-900 mb-3"
         >
           {title}
         </motion.h3>
         <motion.p 
           variants={itemVariants}
-          className="text-neutral-400"
+          className="text-neutral-600"
         >
           {description}
         </motion.p>
@@ -155,26 +267,26 @@ const InfographicItem: React.FC<InfographicItemProps> = ({ icon, title, descript
       initial="hidden"
       animate={controls}
       variants={containerVariants}
-      whileHover={{ y: -5, boxShadow: "0 0 20px rgba(109, 40, 217, 0.3)" }}
-      className="bg-neutral-800 border border-neutral-700 rounded-xl p-6 hover:border-primary-500/30 hover:shadow-glow transition-all duration-300 text-neutral-50"
+      whileHover={{ y: -5, boxShadow: "0 0 20px rgba(109, 40, 217, 0.15)" }}
+      className="bg-white border border-neutral-200 rounded-xl p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300 text-neutral-900"
     >
       <motion.div 
         variants={itemVariants}
         whileHover={{ scale: 1.1, rotate: 5 }}
         transition={{ type: "spring", stiffness: 300, damping: 10 }}
-        className="bg-primary-500/10 p-3 rounded-xl w-fit mb-4 text-primary-400"
+        className="bg-primary-100 p-3 rounded-xl w-fit mb-4 text-primary-700"
       >
         {icon}
       </motion.div>
       <motion.h3 
         variants={itemVariants}
-        className="text-lg font-display font-bold text-white mb-3"
+        className="text-lg font-display font-bold text-neutral-900 mb-3"
       >
         {title}
       </motion.h3>
       <motion.p 
         variants={itemVariants}
-        className="text-neutral-400 text-sm"
+        className="text-neutral-600 text-sm"
       >
         {description}
       </motion.p>
@@ -250,12 +362,11 @@ export const InfrastructureSection = () => {
   ];
 
   return (
-    <section id="infrastructure" className="py-20 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-background">
-        <div className="absolute inset-0 opacity-20" style={{ 
-          backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(109, 40, 217, 0.3) 0%, transparent 40%)'
-        }}></div>
-      </div>
+    <section id="infrastructure" className="py-20 md:py-32 relative overflow-hidden bg-white">
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-neutral-50 to-white opacity-80"></div>
+      <div className="absolute inset-0 opacity-5" style={{ 
+        backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%236d28d9" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
+      }}></div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
@@ -264,7 +375,7 @@ export const InfrastructureSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-500/30 border border-primary-500/20 rounded-full text-primary-400 inline-block mb-4"
+            className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-100 border border-primary-200 rounded-full text-primary-700 inline-block mb-4"
           >
             Infrastructure
           </motion.span>
@@ -273,7 +384,7 @@ export const InfrastructureSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-display font-bold text-white mb-6"
+            className="text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-6"
           >
             Powerful Foundation for Health Innovation
           </motion.h2>
@@ -282,7 +393,7 @@ export const InfrastructureSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-neutral-400 text-lg"
+            className="text-neutral-600 text-lg"
           >
             Our enterprise-grade infrastructure is designed for security, scalability, and
             interoperability across global health systems.
@@ -290,13 +401,100 @@ export const InfrastructureSection = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+<div className="flex flex-col space-y-8">
+  {/* Infrastructure Carousel */}
+  <div className="h-[400px]">
+    <InfrastructureCarousel />
+  </div>
+
+  {/* Product Information */}
+<div className="bg-gradient-to-br from-white to-primary-50 rounded-xl p-8 shadow-xl border border-primary-100">
+  <div className="flex flex-col space-y-6">
+    <div className="flex items-center justify-between">
+      <h3 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+        Healthcare Innovation Hub
+      </h3>
+      <div className="flex space-x-2">
+        {[1, 2, 3].map((dot) => (
+          <div key={dot} className="w-2 h-2 rounded-full bg-primary-400 animate-pulse" 
+               style={{ animationDelay: `${dot * 200}ms` }} />
+        ))}
+      </div>
+    </div>
+    
+    <div className="grid grid-cols-2 gap-6">
+      <div className="group hover:bg-white rounded-lg p-4 transition-all duration-300">
+        <div className="flex items-center mb-4">
+          <div className="flex-shrink-0 w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+            <Server className="w-6 h-6 text-white" />
+          </div>
+          {/* <div className="ml-4 flex-1">
+            <div className="h-1.5 bg-gradient-to-r from-primary-500 to-primary-300 rounded-full transform origin-left group-hover:scale-x-110 transition-transform duration-300" />
+          </div> */}
+        </div>
+        <h4 className="font-semibold text-neutral-800 mb-2">Intelligent Processing</h4>
+        <p className="text-sm text-neutral-600 leading-relaxed">
+          AI-powered data processing with real-time analytics capabilities
+        </p>
+      </div>
+
+      <div className="group hover:bg-white rounded-lg p-4 transition-all duration-300">
+        <div className="flex items-center mb-4">
+          <div className="flex-shrink-0 w-10 h-10 bg-secondary-500 rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+            <Network className="w-6 h-6 text-white" />
+          </div>
+          {/* <div className="ml-4 flex-1">
+            <div className="h-1.5 bg-gradient-to-r from-secondary-500 to-secondary-300 rounded-full transform origin-left group-hover:scale-x-110 transition-transform duration-300" />
+          </div> */}
+        </div>
+        <h4 className="font-semibold text-neutral-800 mb-2">Smart Networks</h4>
+        <p className="text-sm text-neutral-600 leading-relaxed">
+          Self-optimizing networks with predictive scaling
+        </p>
+      </div>
+
+      <div className="group hover:bg-white rounded-lg p-4 transition-all duration-300">
+        <div className="flex items-center mb-4">
+          <div className="flex-shrink-0 w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+            <Shield className="w-6 h-6 text-white" />
+          </div>
+          {/* <div className="ml-4 flex-1">
+            <div className="h-1.5 bg-gradient-to-r from-primary-500 to-primary-300 rounded-full transform origin-left group-hover:scale-x-110 transition-transform duration-300" />
+          </div> */}
+        </div>
+        <h4 className="font-semibold text-neutral-800 mb-2">Quantum Security</h4>
+        <p className="text-sm text-neutral-600 leading-relaxed">
+          Next-gen encryption with quantum-resistant algorithms
+        </p>
+      </div>
+
+      <div className="group hover:bg-white rounded-lg p-4 transition-all duration-300">
+        <div className="flex items-center mb-4">
+          <div className="flex-shrink-0 w-10 h-10 bg-secondary-500 rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+            <Database className="w-6 h-6 text-white" />
+          </div>
+          {/* <div className="ml-4 flex-1">
+            <div className="h-1.5 bg-gradient-to-r from-secondary-500 to-secondary-300 rounded-full transform origin-left group-hover:scale-x-110 transition-transform duration-300" />
+          </div> */}
+        </div>
+        <h4 className="font-semibold text-neutral-800 mb-2">Neural Storage</h4>
+        <p className="text-sm text-neutral-600 leading-relaxed">
+          Bio-inspired storage systems with autonomous optimization
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+          {/* Right side: Timeline */}
           <div>
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="text-2xl font-display font-bold text-white mb-8"
+              className="text-2xl font-display font-bold text-neutral-900 mb-8"
             >
               Strategic Implementation Timeline
             </motion.h3>
@@ -312,44 +510,22 @@ export const InfrastructureSection = () => {
               ))}
             </div>
           </div>
-
-          <div>
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-2xl font-display font-bold text-white mb-8"
-            >
-              Technical Architecture
-            </motion.h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {infographicItems.map((item, index) => (
-                <InfographicItem
-                  key={index}
-                  icon={item.icon}
-                  title={item.title}
-                  description={item.description}
-                  index={index}
-                />
-              ))}
-            </div>
-          </div>
         </div>
 
+        {/* Terminal/Performance Metrics Section */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden text-neutral-50"
+          className="bg-white border border-neutral-200 rounded-2xl overflow-hidden text-neutral-900 shadow-lg mb-20"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="p-8 md:p-12">
-              <h3 className="text-2xl font-display font-bold text-white mb-4">
+              <h3 className="text-2xl font-display font-bold text-neutral-900 mb-4">
                 Performance You Can Trust
               </h3>
-              <p className="text-neutral-400 mb-6">
+              <p className="text-neutral-600 mb-6">
                 Our infrastructure consistently delivers industry-leading performance metrics
                 across all critical dimensions of healthcare technology.
               </p>
@@ -369,13 +545,13 @@ export const InfrastructureSection = () => {
                     <AnimatedSpan 
                       key={index} 
                       delay={2800 + (index * 600)}
-                      className="block mt-3 font-mono"
+                      className="block mt-3 font-mono text-black "
                     >
                       <div className="flex items-center">
                         <TypingAnimation 
                           duration={15} 
                           delay={2800 + (index * 600)} 
-                          className="text-white font-mono"
+                          className="text-black font-mono"
                         >
                           {`${metric.label}: `}
                         </TypingAnimation>
@@ -383,11 +559,11 @@ export const InfrastructureSection = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 0.5, delay: (2800 + (index * 600) + 300) / 1000 }}
-                          className="text-primary-400 font-semibold ml-1 font-mono"
+                          className="text-primary-100 font-semibold ml-1 font-mono "
                         >
                           {metric.value}%
                         </motion.span>
-                        <div className="ml-2 flex-1 bg-neutral-800 rounded-full h-3 overflow-hidden border border-neutral-700">
+                        <div className="ml-2 flex-1 bg-neutral-800  rounded-full h-3 overflow-hidden border border-neutral-700">
                           <motion.div 
                             initial={{ width: 0 }} 
                             animate={{ width: `${metric.value}%` }}
@@ -399,7 +575,7 @@ export const InfrastructureSection = () => {
                             className={`h-full ${metric.color} rounded-full relative`}
                           >
                             <motion.div 
-                              className="absolute top-0 left-0 right-0 bottom-0 bg-white opacity-30"
+                              className="absolute top-0 left-0 right-0 bottom-0 bg-white opacity-100 text-black  "
                               initial={{ x: "-100%" }}
                               animate={{ x: "100%" }}
                               transition={{ 
@@ -431,7 +607,7 @@ export const InfrastructureSection = () => {
                       </div>
                     </AnimatedSpan>
                   ))}
-                  <AnimatedSpan delay={6000} className="block mt-5 border-t border-neutral-700 pt-3">
+                  <AnimatedSpan delay={6000} className="block mt-5 border-t border-neutral-700 pt-3 ">
                     <TypingAnimation duration={20} delay={6000} className="text-green-400 font-mono font-semibold">✓ All systems operational</TypingAnimation>
                     <motion.div
                       initial={{ width: 0 }}
@@ -443,9 +619,9 @@ export const InfrastructureSection = () => {
                 </div>
               </Terminal>
             </div>
-            <div className="bg-gradient-to-br from-primary-900/30 to-secondary-900/30 p-8 md:p-12 flex items-center">
+            <div className="bg-gradient-to-br from-primary-100 to-secondary-100 p-8 md:p-12 flex items-center">
               <div className="w-full">
-                <h3 className="text-2xl font-display font-bold text-white mb-6">
+                <h3 className="text-2xl font-display font-bold text-neutral-900 mb-6">
                   Compliance & Certifications
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
@@ -484,7 +660,7 @@ export const InfrastructureSection = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: index * 0.15 + 0.3 }}
                         viewport={{ once: true }}
-                        className="text-white"
+                        className="text-neutral-800"
                       >
                         {cert}
                       </motion.span>
@@ -495,6 +671,30 @@ export const InfrastructureSection = () => {
             </div>
           </div>
         </motion.div>
+
+        {/* TechinfographicItemsnical Architecture Section */}
+        {/* <div>
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-2xl font-display font-bold text-neutral-900 mb-8 text-center"
+          >
+            Technical Architecture
+          </motion.h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {infographicItems.map((item, index) => (
+              <InfographicItem
+                key={index}
+                icon={item.icon}
+                title={item.title}
+                description={item.description}
+                index={index}
+              />
+            ))}
+          </div>
+        </div> */}
       </div>
     </section>
   );

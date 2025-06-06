@@ -81,14 +81,14 @@ const OfficePhotosCarousel: React.FC = () => {
       {/* Navigation buttons */}
       <button 
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 shadow-lg z-10 transition-all duration-300"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-neutral-800 rounded-full p-2 shadow-lg z-10 transition-all duration-300"
         aria-label="Previous photo"
       >
         <ChevronLeft size={20} />
       </button>
       <button 
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 shadow-lg z-10 transition-all duration-300"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-neutral-800 rounded-full p-2 shadow-lg z-10 transition-all duration-300"
         aria-label="Next photo"
       >
         <ChevronRight size={20} />
@@ -100,7 +100,7 @@ const OfficePhotosCarousel: React.FC = () => {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-white scale-125' : 'bg-white/50'}`}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-primary-500 scale-125' : 'bg-neutral-300'}`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
@@ -256,10 +256,10 @@ export const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-background">
+    <section id="contact" className="py-20 md:py-32 relative overflow-hidden bg-white">
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-neutral-50 to-white opacity-80">
         <div className="absolute inset-0 opacity-20" style={{ 
-          backgroundImage: 'radial-gradient(circle at 80% 80%, rgba(34, 211, 238, 0.3) 0%, transparent 40%)'
+          backgroundImage: 'radial-gradient(circle at 80% 80%, rgba(34, 211, 238, 0.2) 0%, transparent 40%)'
         }}></div>
       </div>
 
@@ -270,7 +270,7 @@ export const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-500/30 border border-primary-500/20 rounded-full text-primary-400 inline-block mb-4"
+            className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-100 border border-primary-200 rounded-full text-primary-700 inline-block mb-4"
           >
             Contact Us
           </motion.span>
@@ -279,7 +279,7 @@ export const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-display font-bold text-white mb-6"
+            className="text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-6"
           >
             Get in Touch
           </motion.h2>
@@ -288,7 +288,7 @@ export const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-neutral-400 text-lg"
+            className="text-neutral-600 text-lg"
           >
             Have questions or ready to explore how we can help transform your organization?
             Our team is here to assist you.
@@ -303,11 +303,11 @@ export const ContactSection = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-display font-bold text-white mb-6">
+              <h3 className="text-2xl font-display font-bold text-neutral-900 mb-6">
                 Send Us a Message
               </h3>
               
-              <div className="bg-neutral-800/50 backdrop-blur-sm rounded-2xl border border-neutral-700 p-6 md:p-8 mb-8 text-neutral-50">
+              <div className="bg-white backdrop-blur-sm rounded-2xl border border-neutral-200 p-6 md:p-8 mb-8 text-neutral-800 shadow-sm">
                 {formState === 'success' ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -317,10 +317,10 @@ export const ContactSection = () => {
                     <div className="flex justify-center mb-4">
                       <CheckCircle2 size={64} className="text-success-500" />
                     </div>
-                    <h4 className="text-xl font-display font-bold text-white mb-2">
+                    <h4 className="text-xl font-display font-bold text-neutral-900 mb-2">
                       Message Sent Successfully!
                     </h4>
-                    <p className="text-neutral-400 mb-6">
+                    <p className="text-neutral-600 mb-6">
                       Thank you for reaching out. We'll get back to you within 24 hours.
                     </p>
                     <button 
@@ -342,10 +342,10 @@ export const ContactSection = () => {
                     <div className="flex justify-center mb-4">
                       <AlertCircle size={64} className="text-error-500" />
                     </div>
-                    <h4 className="text-xl font-display font-bold text-white mb-2">
+                    <h4 className="text-xl font-display font-bold text-neutral-900 mb-2">
                       Oops, Something Went Wrong
                     </h4>
-                    <p className="text-neutral-400 mb-6">
+                    <p className="text-neutral-600 mb-6">
                       We couldn't send your message. Please try again or contact us directly.
                     </p>
                     <button 
@@ -366,7 +366,7 @@ export const ContactSection = () => {
                         <div key={field.id} className={field.id === 'message' ? 'md:col-span-2' : ''}>
                           <label 
                             htmlFor={field.id} 
-                            className="block text-neutral-300 mb-2"
+                            className="block text-neutral-700 mb-2"
                           >
                             {field.label} {field.required && <span className="text-error-500">*</span>}
                           </label>
@@ -377,9 +377,9 @@ export const ContactSection = () => {
                             placeholder={field.placeholder}
                             value={field.value}
                             onChange={(e) => handleInputChange(field.id, e.target.value)}
-                            className={`w-full px-4 py-2 rounded-lg bg-neutral-800 border ${
-                              field.error ? 'border-error-500' : 'border-neutral-700'
-                            } text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all`}
+                            className={`w-full px-4 py-2 rounded-lg bg-white border ${
+                              field.error ? 'border-error-500' : 'border-neutral-300'
+                            } text-neutral-900 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all`}
                             required={field.required} // Added required attribute for formsubmit.co
                           />
                           {field.error && (
@@ -392,7 +392,7 @@ export const ContactSection = () => {
                     <div className="mb-6">
                       <label 
                         htmlFor="message" 
-                        className="block text-neutral-300 mb-2"
+                        className="block text-neutral-700 mb-2"
                       >
                         {formData[3].label} {formData[3].required && <span className="text-error-500">*</span>}
                       </label>
@@ -403,9 +403,9 @@ export const ContactSection = () => {
                         value={formData[3].value}
                         onChange={(e) => handleInputChange('message', e.target.value)}
                         rows={4}
-                        className={`w-full px-4 py-2 rounded-lg bg-neutral-800 border ${
-                          formData[3].error ? 'border-error-500' : 'border-neutral-700'
-                        } text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all`}
+                        className={`w-full px-4 py-2 rounded-lg bg-white border ${
+                          formData[3].error ? 'border-error-500' : 'border-neutral-300'
+                        } text-neutral-900 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all`}
                         required={formData[3].required} // Added required attribute for formsubmit.co
                       />
                       {formData[3].error && (
@@ -418,7 +418,7 @@ export const ContactSection = () => {
                       whileTap={{ scale: 0.98 }}
                       type="submit"
                       disabled={formState === 'submitting'}
-                      className="w-full px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-glow"
+                      className="w-full px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-md"
                     >
                       {formState === 'submitting' ? (
                         <>
@@ -447,11 +447,11 @@ export const ContactSection = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-display font-bold text-white mb-6">
+              <h3 className="text-2xl font-display font-bold text-neutral-900 mb-6">
                 Contact Information
               </h3>
               
-              <div className="bg-neutral-800/50 backdrop-blur-sm rounded-2xl border border-neutral-700 p-6 md:p-8 text-neutral-50">
+              <div className="bg-white backdrop-blur-sm rounded-2xl border border-neutral-200 p-6 md:p-8 text-neutral-800 shadow-sm">
                 <div className="space-y-6">
                   {contactInfo.map((item, index) => (
                     <motion.div
@@ -462,12 +462,12 @@ export const ContactSection = () => {
                       viewport={{ once: true }}
                       className="flex gap-4"
                     >
-                      <div className="p-3 bg-primary-500/10 rounded-lg text-primary-400">
+                      <div className="p-3 bg-primary-100 rounded-lg text-primary-700">
                         {item.icon}
                       </div>
                       <div>
-                        <h4 className="text-white font-medium">{item.label}</h4>
-                        <p className="text-neutral-400">{item.value}</p>
+                        <h4 className="text-neutral-900 font-medium">{item.label}</h4>
+                        <p className="text-neutral-600">{item.value}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -484,20 +484,20 @@ export const ContactSection = () => {
             viewport={{ once: true }}
             className="h-full flex flex-col"
           >
-            <h3 className="text-2xl font-display font-bold text-white mb-6">
+            <h3 className="text-2xl font-display font-bold text-neutral-900 mb-6">
               Visit Our Office
             </h3>
             
-            <div className="bg-neutral-800/50 backdrop-blur-sm rounded-2xl border border-neutral-700 p-6 md:p-8 relative overflow-hidden text-neutral-50">
-              <div className="absolute inset-0 bg-primary-500/5"></div>
+            <div className="bg-white backdrop-blur-sm rounded-2xl border border-neutral-200 p-6 md:p-8 relative overflow-hidden text-neutral-800 shadow-sm">
+              <div className="absolute inset-0 bg-primary-50"></div>
               <div className="relative">
                 {/* Office Photos Carousel */}
                 <OfficePhotosCarousel />
               </div>
             </div>
             
-            <div className="bg-neutral-800/50 backdrop-blur-sm rounded-2xl border border-neutral-700 p-6 md:p-8 relative overflow-hidden flex-grow mt-8 text-neutral-50">
-              <div className="absolute inset-0 bg-primary-500/5"></div>
+            <div className="bg-white backdrop-blur-sm rounded-2xl border border-neutral-200 p-6 md:p-8 relative overflow-hidden flex-grow mt-8 text-neutral-800 shadow-sm">
+              <div className="absolute inset-0 bg-primary-50"></div>
               <div className="relative h-full">
                 <div className="w-full h-full rounded-lg overflow-hidden">
                   <iframe 

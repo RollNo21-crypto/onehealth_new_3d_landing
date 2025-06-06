@@ -22,7 +22,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({ member, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="group relative overflow-hidden rounded-xl shadow-lg w-full max-w-[300px] mx-auto"
+      className="group relative overflow-hidden rounded-xl shadow-lg w-full max-w-[300px] mx-auto bg-white"
     >
       <div className="relative overflow-hidden">
         <img
@@ -31,14 +31,14 @@ const TeamMember: React.FC<TeamMemberProps> = ({ member, index }) => {
           className="object-cover w-full h-[400px] transform group-hover:scale-105 transition-transform duration-500"
           style={{ aspectRatio: '3/4' }} // More vertical aspect ratio
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent h-1/2"></div>
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neutral-900/80 to-transparent h-1/2"></div>
       </div>
       
       <div className="absolute bottom-0 left-0 right-0 p-5 transition-all duration-300">
         <h3 className="text-xl font-display font-bold text-white group-hover:text-primary-400 transition-colors duration-300">
           {member.name}
         </h3>
-        <p className="text-neutral-300 mb-3">{member.role}</p>
+        <p className="text-neutral-200 mb-3">{member.role}</p>
         
         <div className="flex gap-2">
           {member.linkedin && (
@@ -46,7 +46,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({ member, index }) => {
               href={member.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-neutral-800 hover:bg-primary-400 hover:text-white transition-colors duration-300"
+              className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-neutral-800 hover:bg-primary-500 hover:text-white transition-colors duration-300"
               aria-label={`${member.name}'s LinkedIn profile`}
             >
               <Linkedin size={16} />
@@ -57,7 +57,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({ member, index }) => {
               href={member.twitter}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-neutral-800 hover:bg-primary-400 hover:text-white transition-colors duration-300"
+              className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-neutral-800 hover:bg-primary-500 hover:text-white transition-colors duration-300"
               aria-label={`${member.name}'s Twitter profile`}
             >
               <Twitter size={16} />
@@ -68,7 +68,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({ member, index }) => {
               href={member.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-neutral-800 hover:bg-primary-400 hover:text-white transition-colors duration-300"
+              className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-neutral-800 hover:bg-primary-500 hover:text-white transition-colors duration-300"
               aria-label={`${member.name}'s Facebook profile`}
             >
               <Facebook size={16} />
@@ -77,7 +77,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({ member, index }) => {
           {member.email && (
             <a
               href={`mailto:${member.email}`}
-              className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-neutral-800 hover:bg-primary-400 hover:text-white transition-colors duration-300"
+              className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-neutral-800 hover:bg-primary-500 hover:text-white transition-colors duration-300"
               aria-label={`Email ${member.name}`}
             >
               <Mail size={16} />
@@ -182,9 +182,9 @@ const PartnerLogo = ({ partner, index }) => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
     viewport={{ once: true }}
-    className="group relative overflow-hidden rounded-2xl bg-neutral-800/50 backdrop-blur-sm border border-neutral-700 p-8 hover:border-primary-500/50 transition-all duration-300 text-neutral-50"
+    className="group relative overflow-hidden rounded-2xl bg-white backdrop-blur-sm border border-neutral-200 p-8 hover:border-primary-300 transition-all duration-300 text-neutral-800 shadow-sm"
   >
-    <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-secondary-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-secondary-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
     <div className="relative flex items-center justify-center h-20">
       <img
         src={partner.logo}
@@ -260,8 +260,8 @@ export const TeamSection = () => {
 
 
   return (
-    <section id="team" className="py-20 md:py-32 relative overflow-hidden bg-neutral-50/5">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-neutral-950/50 to-background opacity-80"></div>
+    <section id="team" className="py-20 md:py-32 relative overflow-hidden bg-white">
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-neutral-50 to-white opacity-80"></div>
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         {/* Centered heading section - removed the flex layout and View More button */}
         <div className="text-center mb-16">
@@ -270,7 +270,7 @@ export const TeamSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-500/30 border border-primary-500/20 rounded-full text-primary-400 inline-block mb-4"
+            className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-100 border border-primary-200 rounded-full text-primary-700 inline-block mb-4"
           >
             OUR TEAM
           </motion.span>
@@ -279,7 +279,7 @@ export const TeamSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-display font-bold text-white mb-6"
+            className="text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-6"
           >
             Meet Our Professional Team
           </motion.h2>
@@ -288,7 +288,7 @@ export const TeamSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-neutral-400 text-lg max-w-3xl mx-auto"
+            className="text-neutral-600 text-lg max-w-3xl mx-auto"
           >
             Our team of experienced professionals is dedicated to providing innovative
             strategies for your success and prosperity.

@@ -36,17 +36,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ icon, title, description, cat
       className="relative group"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-400/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-500"></div>
-      <div className="relative overflow-hidden rounded-2xl bg-neutral-800 border border-neutral-700 group-hover:border-primary-500/50 p-6 transition-all duration-300 h-full text-neutral-50">
-        <div className="absolute top-4 right-4 px-2 py-1 text-xs font-semibold bg-neutral-800 text-neutral-300 rounded-full">
+      <div className="relative overflow-hidden rounded-2xl bg-white border border-neutral-200 group-hover:border-primary-500/50 p-6 transition-all duration-300 h-full text-neutral-900 shadow-sm hover:shadow-md">
+        <div className="absolute top-4 right-4 px-2 py-1 text-xs font-semibold bg-neutral-100 text-neutral-700 rounded-full">
           {category}
         </div>
-        <div className="mb-4 p-3 bg-primary-500/10 rounded-xl w-fit text-primary-400 group-hover:text-primary-300 group-hover:bg-primary-500/20 transition-all duration-300">
+        <div className="mb-4 p-3 bg-primary-100 rounded-xl w-fit text-primary-700 group-hover:text-primary-800 group-hover:bg-primary-200 transition-all duration-300">
           {icon}
         </div>
-        <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-primary-300 transition-colors duration-300">
+        <h3 className="text-xl font-display font-bold text-neutral-900 mb-3 group-hover:text-primary-700 transition-colors duration-300">
           {title}
         </h3>
-        <p className="text-neutral-400 group-hover:text-neutral-300 transition-colors duration-300">
+        <p className="text-neutral-600 group-hover:text-neutral-800 transition-colors duration-300">
           {description}
         </p>
         <motion.div
@@ -128,10 +128,10 @@ export const ServicesProductsSection = () => {
   ];
 
   return (
-    <section id="services-products" className="py-20 md:py-32 relative overflow-hidden bg-neutral-900">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-neutral-950 to-background opacity-80"></div>
-      <div className="absolute inset-0 opacity-10" style={{ 
-        backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%239C92AC\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
+    <section id="services-products" className="py-20 md:py-32 relative overflow-hidden bg-white">
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-neutral-50 to-white opacity-80"></div>
+      <div className="absolute inset-0 opacity-5" style={{ 
+        backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%236d28d9\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'      
       }}></div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -141,7 +141,7 @@ export const ServicesProductsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-500/30 border border-primary-500/20 rounded-full text-primary-400 inline-block mb-4"
+            className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-100 border border-primary-200 rounded-full text-primary-700 inline-block mb-4"
           >
             Our Offerings
           </motion.span>
@@ -150,7 +150,7 @@ export const ServicesProductsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-display font-bold text-white mb-6"
+            className="text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-6"
           >
             Services & Products
           </motion.h2>
@@ -159,7 +159,7 @@ export const ServicesProductsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-neutral-400 text-lg"
+            className="text-neutral-600 text-lg"
           >
             Our comprehensive suite of healthcare technology solutions designed to transform 
             patient care, streamline operations, and drive innovation.
