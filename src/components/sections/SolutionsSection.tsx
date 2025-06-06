@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
   Heart, 
@@ -179,63 +179,87 @@ const StepCard: React.FC<StepCardProps> = ({ number, icon, title, description, c
 
 export const SolutionsSection = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [deviceType, setDeviceType] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
+  const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Check if the screen is mobile on component mount and window resize
-  React.useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+  // Check screen size on component mount and window resize
+  useEffect(() => {
+    const checkScreenSize = () => {
+      if (window.innerWidth < 640) {
+        setDeviceType('mobile');
+      } else if (window.innerWidth < 1024) {
+        setDeviceType('tablet');
+      } else {
+        setDeviceType('desktop');
+      }
     };
     
     // Initial check
-    checkMobile();
+    checkScreenSize();
     
     // Add event listener for window resize
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener('resize', checkScreenSize);
     
     // Cleanup
-    return () => window.removeEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
+
+  // Auto-scroll functionality for carousel
+  useEffect(() => {
+    if (deviceType !== 'desktop') {
+      // Start auto-scroll
+      autoScrollRef.current = setInterval(() => {
+        setActiveStep(prev => (prev === solutionSteps.length - 1 ? 0 : prev + 1));
+      }, 5000);
+      
+      // Cleanup
+      return () => {
+        if (autoScrollRef.current) {
+          clearInterval(autoScrollRef.current);
+        }
+      };
+    }
+  }, [deviceType]);
 
   const solutionSteps = [
     {
       number: 1,
-      icon: <CheckCircle size={isMobile ? 20 : 24} />,
+      icon: <CheckCircle size={deviceType === 'mobile' ? 20 : 24} />,
       title: "Quality Assurance",
       description: "Ensuring highest standards through rigorous testing and validation.",
       color: "#4f46e5", // indigo-600
     },
     {
       number: 2,
-      icon: <Brain size={isMobile ? 20 : 24} />,
+      icon: <Brain size={deviceType === 'mobile' ? 20 : 24} />,
       title: "AI Integration",
       description: "Advanced neural networks for intelligent decision support.",
       color: "#7c3aed", // violet-600
     },
     {
       number: 3,
-      icon: <Microscope size={isMobile ? 20 : 24} />,
+      icon: <Microscope size={deviceType === 'mobile' ? 20 : 24} />,
       title: "Research Platform",
       description: "Collaborative environment for accelerating discoveries.",
       color: "#2563eb", // blue-600
     },
     {
       number: 4,
-      icon: <Shield size={isMobile ? 20 : 24} />,
+      icon: <Shield size={deviceType === 'mobile' ? 20 : 24} />,
       title: "Security Framework",
       description: "Military-grade protection for sensitive patient data.",
       color: "#0891b2", // cyan-600
     },
     {
       number: 5,
-      icon: <Globe size={isMobile ? 20 : 24} />,
+      icon: <Globe size={deviceType === 'mobile' ? 20 : 24} />,
       title: "Global Reach",
       description: "Solutions that work across diverse geographic regions.",
       color: "#0d9488", // teal-600
     },
     {
       number: 6,
-      icon: <Zap size={isMobile ? 20 : 24} />,
+      icon: <Zap size={deviceType === 'mobile' ? 20 : 24} />,
       title: "Performance Boost",
       description: "Optimized systems for maximum efficiency and speed.",
       color: "#16a34a", // green-600
@@ -347,37 +371,43 @@ export const SolutionsSection = () => {
     </>
   );
 
-  // Mobile view component with carousel
-  const MobileView = () => {
+  // Tablet view component with enhanced carousel
+  const TabletView = () => {
     const nextStep = () => {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
+      }
       setActiveStep((prev) => (prev === solutionSteps.length - 1 ? 0 : prev + 1));
+      
+      // Restart auto-scroll after user interaction
+      autoScrollRef.current = setInterval(() => {
+        setActiveStep(prev => (prev === solutionSteps.length - 1 ? 0 : prev + 1));
+      }, 5000);
     };
 
     const prevStep = () => {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
+      }
       setActiveStep((prev) => (prev === 0 ? solutionSteps.length - 1 : prev - 1));
+      
+      // Restart auto-scroll after user interaction
+      autoScrollRef.current = setInterval(() => {
+        setActiveStep(prev => (prev === solutionSteps.length - 1 ? 0 : prev + 1));
+      }, 5000);
     };
 
     return (
-      <div className="py-8">
-        {/* Step Indicator */}
-        <div className="flex justify-center mb-8 space-x-2">
-          {solutionSteps.map((_, index) => (
-            <motion.button
-              key={index}
-              className={`w-3 h-3 rounded-full ${index === activeStep ? 'bg-primary-600' : 'bg-neutral-300'}`}
-              onClick={() => setActiveStep(index)}
-              whileTap={{ scale: 0.9 }}
-            />
-          ))}
-        </div>
-
-        {/* Carousel */}
-        <div className="relative overflow-hidden px-2">
-          <div className="flex justify-between items-center absolute inset-x-0 top-1/2 transform -translate-y-1/2 z-10 px-2">
+      <div className="py-12">
+        {/* Enhanced Carousel for Tablet */}
+        <div className="relative overflow-hidden px-4 pb-12">
+          {/* Navigation Buttons */}
+          <div className="flex justify-between items-center absolute inset-x-0 top-1/2 transform -translate-y-1/2 z-10 px-4">
             <motion.button 
               onClick={prevStep}
-              className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-neutral-900 shadow-lg"
-              whileTap={{ scale: 0.9 }}
+              className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-neutral-900 shadow-lg border border-neutral-100"
+              whileHover={{ scale: 1.05, backgroundColor: '#f9fafb' }}
+              whileTap={{ scale: 0.95 }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -385,8 +415,9 @@ export const SolutionsSection = () => {
             </motion.button>
             <motion.button 
               onClick={nextStep}
-              className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-neutral-900 shadow-lg"
-              whileTap={{ scale: 0.9 }}
+              className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-neutral-900 shadow-lg border border-neutral-100"
+              whileHover={{ scale: 1.05, backgroundColor: '#f9fafb' }}
+              whileTap={{ scale: 0.95 }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
@@ -394,64 +425,203 @@ export const SolutionsSection = () => {
             </motion.button>
           </div>
 
-          <motion.div 
-            className="flex"
-            animate={{ x: `-${activeStep * 100}%` }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          >
-            {solutionSteps.map((step, index) => (
-              <div key={index} className="w-full flex-shrink-0 px-3">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-white border border-neutral-100 rounded-xl p-6 shadow-lg text-black"
-                >
-                  <div className="flex items-center mb-5">
+          {/* Carousel Cards */}
+          <div className="overflow-hidden">
+            <motion.div 
+              className="flex"
+              animate={{ x: `-${activeStep * 100}%` }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              {solutionSteps.map((step, index) => (
+                <div key={index} className="w-full flex-shrink-0 px-4">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-white border border-neutral-100 rounded-xl p-8 shadow-lg text-black h-full"
+                    whileHover={{ 
+                      scale: 1.03, 
+                      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                      borderColor: step.color 
+                    }}
+                  >
+                    <div className="flex flex-col h-full">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div 
+                          className="p-2 bg-white/30 rounded-lg text-black"
+                          style={{ backgroundColor: `${step.color}15` }}
+                        >
+                          {step.icon}
+                        </div>
+                        <h3 className="text-xl md:text-2xl font-display font-bold text-black">
+                          {step.title}
+                        </h3>
+                      </div>
+                      <p className="text-black/80 leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+          {/* Carousel Indicators */}
+          <div className="flex justify-center mt-8 space-x-3">
+            {solutionSteps.map((_, index) => (
+              <motion.button
+                key={index}
+                className={`h-3 rounded-full transition-all duration-300 ${index === activeStep ? 'w-8 bg-primary-600' : 'w-3 bg-neutral-300'}`}
+                onClick={() => {
+                  if (autoScrollRef.current) {
+                    clearInterval(autoScrollRef.current);
+                  }
+                  setActiveStep(index);
+                  
+                  // Restart auto-scroll after user interaction
+                  autoScrollRef.current = setInterval(() => {
+                    setActiveStep(prev => (prev === solutionSteps.length - 1 ? 0 : prev + 1));
+                  }, 5000);
+                }}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Mobile view component with enhanced carousel
+  const MobileView = () => {
+    const nextStep = () => {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
+      }
+      setActiveStep((prev) => (prev === solutionSteps.length - 1 ? 0 : prev + 1));
+      
+      // Restart auto-scroll after user interaction
+      autoScrollRef.current = setInterval(() => {
+        setActiveStep(prev => (prev === solutionSteps.length - 1 ? 0 : prev + 1));
+      }, 5000);
+    };
+
+    const prevStep = () => {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
+      }
+      setActiveStep((prev) => (prev === 0 ? solutionSteps.length - 1 : prev - 1));
+      
+      // Restart auto-scroll after user interaction
+      autoScrollRef.current = setInterval(() => {
+        setActiveStep(prev => (prev === solutionSteps.length - 1 ? 0 : prev + 1));
+      }, 5000);
+    };
+
+    return (
+      <div className="py-8">
+        {/* Enhanced Carousel for Mobile */}
+        <div className="relative overflow-hidden px-2 pb-10">
+          {/* Navigation Buttons */}
+          <div className="flex justify-between items-center absolute inset-x-0 top-1/2 transform -translate-y-1/2 z-10 px-2">
+            <motion.button 
+              onClick={prevStep}
+              className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-neutral-900 shadow-lg border border-neutral-100"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+            </motion.button>
+            <motion.button 
+              onClick={nextStep}
+              className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-neutral-900 shadow-lg border border-neutral-100"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+              </svg>
+            </motion.button>
+          </div>
+
+          {/* Carousel Cards with AnimatePresence for smooth transitions */}
+          <div className="overflow-hidden">
+            <motion.div 
+              className="flex"
+              animate={{ x: `-${activeStep * 100}%` }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              {solutionSteps.map((step, index) => (
+                <div key={index} className="w-full flex-shrink-0 px-3">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-white border border-neutral-100 rounded-xl p-6 shadow-lg text-black aspect-square"
+                    whileHover={{ 
+                      scale: 1.05, 
+                      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                      borderColor: step.color 
+                    }}
+                  >
+                    {/* Number first */}
                     <div 
-                      className="flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-base mr-4 shadow-md"
+                      className="flex items-center justify-center w-14 h-14 rounded-full text-white font-bold text-lg mb-4 shadow-md mx-auto"
                       style={{ backgroundColor: step.color }}
                     >
                       {step.number}
                     </div>
-                    <div 
-                      className="flex items-center justify-center w-12 h-12 rounded-full mr-4 shadow-sm"
-                      style={{ backgroundColor: `${step.color}15` }}
-                    >
-                      <div style={{ color: step.color }}>
-                        {step.icon}
+                    
+                    {/* Logo and heading with priority */}
+                    <div className="flex flex-col items-center mb-3">
+                      <div 
+                        className="flex items-center justify-center w-12 h-12 rounded-full mb-2 shadow-sm"
+                        style={{ backgroundColor: `${step.color}15` }}
+                      >
+                        <div style={{ color: step.color }}>
+                          {step.icon}
+                        </div>
                       </div>
+                      <h3 className="text-lg font-bold text-black text-center">
+                        {step.title}
+                      </h3>
                     </div>
-                    <h3 className="text-lg font-bold text-black">
-                      {step.title}
-                    </h3>
-                  </div>
-                  <p className="text-base text-black leading-relaxed">
-                    {step.description}
-                  </p>
-                </motion.div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
+                    
+                    {/* Description below */}
+                    <p className="text-sm text-black leading-relaxed text-center">
+                      {step.description}
+                    </p>
+                  </motion.div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
 
-        {/* Step Grid for Quick Navigation */}
-        <div className="grid grid-cols-4 gap-3 mt-10 px-2">
-          {solutionSteps.map((step, index) => (
-            <motion.button
-              key={index}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setActiveStep(index)}
-              className={`p-3 rounded-lg ${activeStep === index ? 'bg-neutral-50 ring-2 ring-primary-500/50' : 'bg-white shadow'} text-black`}
-            >
-              <div 
-                className="w-10 h-10 mx-auto rounded-full flex items-center justify-center mb-1"
-                style={{ backgroundColor: activeStep === index ? step.color : `${step.color}20` }}
-              >
-                <span className="text-white text-sm font-bold">{step.number}</span>
-              </div>
-            </motion.button>
-          ))}
+          {/* Carousel Indicators */}
+          <div className="flex justify-center mt-6 space-x-2">
+            {solutionSteps.map((_, index) => (
+              <motion.button
+                key={index}
+                className={`h-2 rounded-full transition-all duration-300 ${index === activeStep ? 'w-6 bg-primary-600' : 'w-2 bg-neutral-300'}`}
+                onClick={() => {
+                  if (autoScrollRef.current) {
+                    clearInterval(autoScrollRef.current);
+                  }
+                  setActiveStep(index);
+                  
+                  // Restart auto-scroll after user interaction
+                  autoScrollRef.current = setInterval(() => {
+                    setActiveStep(prev => (prev === solutionSteps.length - 1 ? 0 : prev + 1));
+                  }, 5000);
+                }}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+              />
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -483,7 +653,7 @@ export const SolutionsSection = () => {
             viewport={{ once: true }}
             className="text-2xl md:text-4xl font-display font-bold text-black mb-4 md:mb-6"
           >
-            8 Steps Infographic Solution
+            6 Steps Infographic Solution
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -497,8 +667,10 @@ export const SolutionsSection = () => {
           </motion.p>
         </div>
 
-        {/* Conditional rendering based on screen size */}
-        {isMobile ? <MobileView /> : <DesktopView />}
+        {/* Conditional rendering based on device type */}
+        {deviceType === 'desktop' ? <DesktopView /> : 
+         deviceType === 'tablet' ? <TabletView /> : 
+         <MobileView />}
       </div>
     </section>
   );

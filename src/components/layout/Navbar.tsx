@@ -31,7 +31,7 @@ export const Navbar = () => {
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-neutral-100' 
+          ? 'bg-white/90 backdrop-blur-md shadow-lg border-b border-neutral-200/50' 
           : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
@@ -67,7 +67,7 @@ export const Navbar = () => {
             ))}
             <motion.a
               href="#contact"
-              className="bg-primary-600 hover:bg-primary-700 text-white py-2.5 px-7 rounded-xl font-medium transition-all shadow-md shadow-primary-500/10 hover:shadow-primary-500/20 hover:translate-y-0.5"
+              className="bg-primary-600 hover:bg-primary-700 text-white py-2.5 px-7 rounded-xl font-medium transition-all shadow-md shadow-primary-500/20 hover:shadow-primary-500/30 hover:translate-y-0.5"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
@@ -81,7 +81,7 @@ export const Navbar = () => {
           {/* Tablet/Mobile Navigation Button */}
           <motion.button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-black z-50 p-3 hover:bg-primary-100 rounded-xl transition-colors"
+            className="lg:hidden text-neutral-900 z-50 p-3 hover:bg-primary-500/20 rounded-xl transition-colors"
             aria-label="Toggle menu"
             whileTap={{ scale: 0.9 }}
           >
@@ -97,7 +97,7 @@ export const Navbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden fixed inset-0 top-16 bg-white/98 backdrop-blur-md shadow-lg border-t border-neutral-100 z-40"
+              className="lg:hidden fixed inset-0 top-16 bg-white/95 backdrop-blur-md z-40"
             >
               <div className="container mx-auto px-6 py-8">
                 <div className="flex flex-col space-y-8">
@@ -111,10 +111,10 @@ export const Navbar = () => {
                     >
                       <a
                         href={link.href}
-                        className="flex items-center text-xl font-medium text-black hover:text-primary-600 py-3 border-b border-neutral-100 hover:border-primary-300 transition-all"
+                        className="flex items-center text-xl font-medium text-black hover:text-primary-700 py-3 border-b border-neutral-200 hover:border-primary-500 transition-all"
                         onClick={() => setIsMenuOpen(false)}
                       >
-                        <span className="inline-flex items-center justify-center w-8 h-8 mr-3 rounded-full bg-primary-50 text-primary-600 text-sm shadow-sm">
+                        <span className="inline-flex items-center justify-center w-8 h-8 mr-3 rounded-full bg-primary-100 text-primary-700 text-sm">
                           {index + 1}
                         </span>
                         {link.label}
@@ -130,7 +130,7 @@ export const Navbar = () => {
                   >
                     <a
                       href="#contact"
-                      className="inline-block bg-primary-600 hover:bg-primary-700 text-white py-4 px-8 rounded-xl text-lg w-full text-center font-medium shadow-md shadow-primary-500/10 hover:shadow-primary-500/20"
+                      className="inline-block bg-primary-600 hover:bg-primary-700 text-white py-4 px-8 rounded-xl text-lg w-full text-center font-medium shadow-md shadow-primary-500/20"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Get Started

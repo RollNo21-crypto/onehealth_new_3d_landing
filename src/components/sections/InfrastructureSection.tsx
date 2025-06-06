@@ -400,92 +400,75 @@ export const InfrastructureSection = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-<div className="flex flex-col space-y-8">
-  {/* Infrastructure Carousel */}
-  <div className="h-[400px]">
-    <InfrastructureCarousel />
-  </div>
-
-  {/* Product Information */}
-<div className="bg-gradient-to-br from-white to-primary-50 rounded-xl p-8 shadow-xl border border-primary-100">
-  <div className="flex flex-col space-y-6">
-    <div className="flex items-center justify-between">
-      <h3 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-        Healthcare Innovation Hub
-      </h3>
-      <div className="flex space-x-2">
-        {[1, 2, 3].map((dot) => (
-          <div key={dot} className="w-2 h-2 rounded-full bg-primary-400 animate-pulse" 
-               style={{ animationDelay: `${dot * 200}ms` }} />
-        ))}
-      </div>
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+  <div className="flex flex-col space-y-8">
+    {/* Infrastructure Carousel */}
+    <div className="h-[400px]">
+      <InfrastructureCarousel />
     </div>
-    
-    <div className="grid grid-cols-2 gap-6">
-      <div className="group hover:bg-white rounded-lg p-4 transition-all duration-300">
-        <div className="flex items-center mb-4">
-          <div className="flex-shrink-0 w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
-            <Server className="w-6 h-6 text-white" />
-          </div>
-          {/* <div className="ml-4 flex-1">
-            <div className="h-1.5 bg-gradient-to-r from-primary-500 to-primary-300 rounded-full transform origin-left group-hover:scale-x-110 transition-transform duration-300" />
-          </div> */}
-        </div>
-        <h4 className="font-semibold text-neutral-800 mb-2">Intelligent Processing</h4>
-        <p className="text-sm text-neutral-600 leading-relaxed">
-          AI-powered data processing with real-time analytics capabilities
-        </p>
-      </div>
 
-      <div className="group hover:bg-white rounded-lg p-4 transition-all duration-300">
-        <div className="flex items-center mb-4">
-          <div className="flex-shrink-0 w-10 h-10 bg-secondary-500 rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
-            <Network className="w-6 h-6 text-white" />
+    {/* Product Information */}
+    <div className="relative group">
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+      <div className="relative bg-white rounded-xl p-8">
+        <div className="flex flex-col space-y-6">
+          <div className="flex items-center justify-between">
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+              Healthcare Innovation Hub
+            </h3>
+            <div className="flex space-x-2">
+              {[1, 2, 3].map((dot) => (
+                <div key={dot} className="w-2 h-2 rounded-full bg-primary-400 animate-pulse" 
+                     style={{ animationDelay: `${dot * 200}ms` }} />
+              ))}
+            </div>
           </div>
-          {/* <div className="ml-4 flex-1">
-            <div className="h-1.5 bg-gradient-to-r from-secondary-500 to-secondary-300 rounded-full transform origin-left group-hover:scale-x-110 transition-transform duration-300" />
-          </div> */}
-        </div>
-        <h4 className="font-semibold text-neutral-800 mb-2">Smart Networks</h4>
-        <p className="text-sm text-neutral-600 leading-relaxed">
-          Self-optimizing networks with predictive scaling
-        </p>
-      </div>
-
-      <div className="group hover:bg-white rounded-lg p-4 transition-all duration-300">
-        <div className="flex items-center mb-4">
-          <div className="flex-shrink-0 w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
-            <Shield className="w-6 h-6 text-white" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                icon: <Server className="w-6 h-6 text-white" />,
+                title: "Intelligent Processing",
+                description: "AI-powered data processing with real-time analytics capabilities",
+                gradient: "from-primary-500 to-primary-600"
+              },
+              {
+                icon: <Network className="w-6 h-6 text-white" />,
+                title: "Smart Networks",
+                description: "Self-optimizing networks with predictive scaling",
+                gradient: "from-secondary-500 to-secondary-600"
+              },
+              {
+                icon: <Shield className="w-6 h-6 text-white" />,
+                title: "Quantum Security",
+                description: "Next-gen encryption with quantum-resistant algorithms",
+                gradient: "from-primary-500 to-primary-600"
+              },
+              {
+                icon: <Database className="w-6 h-6 text-white" />,
+                title: "Neural Storage",
+                description: "Bio-inspired storage systems with autonomous optimization",
+                gradient: "from-secondary-500 to-secondary-600"
+              }
+            ].map((item, index) => (
+              <div key={index} className="group/card relative px-6 py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-xl -z-10"></div>
+                <div className="flex items-center mb-4">
+                  <div className={`flex-shrink-0 w-10 h-10 bg-gradient-to-br ${item.gradient} rounded-xl flex items-center justify-center transform group-hover/card:scale-110 transition-transform duration-300`}>
+                    {item.icon}
+                  </div>
+                </div>
+                <h4 className="font-semibold text-neutral-800 mb-2">{item.title}</h4>
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            ))}
           </div>
-          {/* <div className="ml-4 flex-1">
-            <div className="h-1.5 bg-gradient-to-r from-primary-500 to-primary-300 rounded-full transform origin-left group-hover:scale-x-110 transition-transform duration-300" />
-          </div> */}
         </div>
-        <h4 className="font-semibold text-neutral-800 mb-2">Quantum Security</h4>
-        <p className="text-sm text-neutral-600 leading-relaxed">
-          Next-gen encryption with quantum-resistant algorithms
-        </p>
-      </div>
-
-      <div className="group hover:bg-white rounded-lg p-4 transition-all duration-300">
-        <div className="flex items-center mb-4">
-          <div className="flex-shrink-0 w-10 h-10 bg-secondary-500 rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
-            <Database className="w-6 h-6 text-white" />
-          </div>
-          {/* <div className="ml-4 flex-1">
-            <div className="h-1.5 bg-gradient-to-r from-secondary-500 to-secondary-300 rounded-full transform origin-left group-hover:scale-x-110 transition-transform duration-300" />
-          </div> */}
-        </div>
-        <h4 className="font-semibold text-neutral-800 mb-2">Neural Storage</h4>
-        <p className="text-sm text-neutral-600 leading-relaxed">
-          Bio-inspired storage systems with autonomous optimization
-        </p>
       </div>
     </div>
   </div>
-</div>
-</div>
 
           {/* Right side: Timeline */}
           <div>

@@ -24,9 +24,9 @@ const ValueCard: React.FC<ValueCardProps> = ({ icon, title, description, delay }
       transition={{ duration: 0.6, delay }}
       className="relative group"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-      <div className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur-sm border border-neutral-100 shadow-md group-hover:border-primary-300 p-8 transition-all duration-300 h-full">
-        <div className="mb-6 p-4 bg-gradient-to-br from-primary-50 to-primary-100/50 rounded-2xl w-fit text-primary-600 group-hover:text-primary-700 group-hover:from-primary-100 group-hover:to-primary-200/50 transition-all duration-300 shadow-sm border border-primary-100">
+      <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-sm border border-neutral-200/50 shadow-lg group-hover:border-primary-500/30 p-8 transition-all duration-300 h-full">
+        <div className="mb-6 p-4 bg-gradient-to-br from-primary-50 to-primary-100/50 rounded-2xl w-fit text-primary-600 group-hover:text-primary-700 group-hover:from-primary-100 group-hover:to-primary-200/50 transition-all duration-300 shadow-sm">
           {icon}
         </div>
         <h3 className="text-2xl font-display font-bold text-neutral-800 mb-4 group-hover:text-primary-600 transition-colors duration-300">
@@ -80,8 +80,8 @@ export const MissionVisionSection = () => {
   return (
     <section id="mission-vision" className="py-20 md:py-32 relative overflow-hidden bg-white">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 opacity-20" style={{ 
-          backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(79, 70, 229, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 50%)'
+        <div className="absolute inset-0 opacity-10" style={{ 
+          backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(79, 70, 229, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 50%)'
         }}></div>
       </div>
 
@@ -161,7 +161,7 @@ export const MissionVisionSection = () => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               
-              <div className="absolute bottom-0 right-0 bg-primary-600/90 backdrop-blur-sm p-6 rounded-tl-2xl z-20 max-w-[200px] shadow-lg">
+              <div className="absolute bottom-0 right-0 bg-primary-700/90 backdrop-blur-sm p-6 rounded-tl-2xl z-20 max-w-[200px]">
                 <div className="text-center">
                   <h3 className="text-5xl font-display font-bold text-white mb-1">25+</h3>
                   <p className="text-primary-200 text-sm">Years of Experience</p>
@@ -174,7 +174,7 @@ export const MissionVisionSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-neutral-50 to-white backdrop-blur-sm rounded-2xl p-8 border border-neutral-100 shadow-md"
+              className="bg-gradient-to-br from-neutral-50 to-white backdrop-blur-sm rounded-2xl p-8 border border-neutral-200 shadow-lg"
             >
               <h3 className="text-2xl font-display font-bold text-neutral-900 mb-6">Our Plan Makes You Feel More Comfortable in Health Management</h3>
               <p className="text-neutral-700 mb-6 leading-relaxed">
@@ -184,7 +184,7 @@ export const MissionVisionSection = () => {
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-block px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-full shadow-md shadow-primary-500/10 hover:shadow-primary-500/20 transition-all"
+                className="inline-block px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-full shadow-md transition-all"
               >
                 Contact Us
               </motion.a>
@@ -198,7 +198,7 @@ export const MissionVisionSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-display font-bold text-black mb-4"
+            className="text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-4"
           >
             Our Core Values
           </motion.h3>
@@ -207,7 +207,7 @@ export const MissionVisionSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-black text-lg max-w-2xl mx-auto"
+            className="text-neutral-600 text-lg max-w-2xl mx-auto"
           >
             These principles guide our mission to revolutionize healthcare through technology and innovation
           </motion.p>
