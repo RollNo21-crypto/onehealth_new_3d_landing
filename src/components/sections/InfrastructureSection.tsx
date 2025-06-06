@@ -13,19 +13,19 @@ const InfrastructureCarousel: React.FC = () => {
   const infrastructureImages = [
     {
       url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2034&q=80",
-      alt: "Modern server room with blue lighting"
+      alt: "Advanced MedTech Data Center"
     },
     {
       url: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      alt: "Network infrastructure and cables"
+      alt: "Medical Device Manufacturing"
     },
     {
       url: "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
-      alt: "Data center with server racks"
+      alt: "Telemedicine Infrastructure"
     },
     {
       url: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      alt: "Healthcare technology dashboard"
+      alt: "AI-Powered Diagnostic Systems"
     }
   ];
   
@@ -76,8 +76,8 @@ const InfrastructureCarousel: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent">
                 <div className="absolute bottom-8 left-8 text-white">
-                  <h3 className="text-xl font-bold mb-2">{image.alt}</h3>
-                  <p className="text-sm text-white/80">Powering healthcare innovation with enterprise infrastructure</p>
+                  {/* <h3 className="text-xl font-bold mb-2">{image.alt}</h3> */}
+                  <p className="text-sm text-white/80">Posspole MedTech: Revolutionizing healthcare with cutting-edge technology</p>
                 </div>
               </div>
             </div>
@@ -298,65 +298,65 @@ export const InfrastructureSection = () => {
   const timelineItems = [
     {
       year: "Phase 1",
-      title: "Data Foundation",
-      description: "Establishing secure data warehouses and integration pipelines to connect disparate health information systems."
+      title: "Medical Data Foundation",
+      description: "Establishing secure medical data warehouses and integration pipelines to connect hospital systems, clinics, and research institutions."
     },
     {
       year: "Phase 2",
-      title: "Analytics Deployment",
-      description: "Implementing advanced analytics and machine learning models to derive actionable insights from collected data."
+      title: "Diagnostic AI Deployment",
+      description: "Implementing advanced medical analytics and machine learning models to assist healthcare professionals with accurate diagnostics."
     },
     {
       year: "Phase 3",
-      title: "Global Expansion",
-      description: "Scaling infrastructure to support global operations with localized compliance and multi-regional availability."
+      title: "Global Healthcare Network",
+      description: "Scaling infrastructure to support global healthcare operations with localized compliance and multi-regional availability."
     },
     {
       year: "Phase 4",
-      title: "Innovation Acceleration",
-      description: "Deploying research sandboxes and innovation platforms to foster continuous improvement and breakthrough solutions."
+      title: "Medical Innovation Lab",
+      description: "Deploying research sandboxes and innovation platforms to develop breakthrough medical devices and treatment solutions."
     },
   ];
 
   const infographicItems = [
     {
       icon: <Layers size={24} />,
-      title: "Multi-Layered Architecture",
-      description: "Fault-tolerant design with redundant systems ensuring 99.99% uptime and seamless failover."
+      title: "Medical-Grade Architecture",
+      description: "Fault-tolerant design with redundant systems ensuring 99.99% uptime for critical healthcare applications."
     },
     {
       icon: <Database size={24} />,
-      title: "Scalable Storage",
-      description: "Petabyte-scale storage solutions capable of handling diverse healthcare data types from images to genomics."
+      title: "Clinical Data Storage",
+      description: "Petabyte-scale storage solutions for medical imaging, genomics, and electronic health records with instant retrieval."
     },
     {
       icon: <Lock size={24} />,
-      title: "Zero-Trust Security",
-      description: "Comprehensive security model with continuous verification and least-privilege access controls."
+      title: "Patient Data Security",
+      description: "Comprehensive security model with continuous verification and HIPAA-compliant access controls."
     },
     {
       icon: <Share2 size={24} />,
-      title: "Interoperability Hub",
+      title: "Medical Interoperability",
       description: "Standards-based interoperability supporting FHIR, HL7, DICOM and proprietary formats with automated translation."
     },
     {
       icon: <Network size={24} />,
-      title: "Edge Computing",
-      description: "Distributed processing capabilities bringing computation closer to data sources for reduced latency."
+      title: "Remote Care Computing",
+      description: "Distributed processing capabilities bringing computation closer to remote care facilities and telemedicine applications."
     },
     {
       icon: <Server size={24} />,
-      title: "Hybrid Infrastructure",
-      description: "Flexible deployment options spanning public cloud, private cloud, and on-premises environments."
+      title: "Hybrid Medical Infrastructure",
+      description: "Flexible deployment options spanning public cloud, private cloud, and on-premises hospital environments."
     },
     {
       icon: <Cloud size={24} />,
-      title: "Cloud-Native Design",
-      description: "Containerized microservices architecture enabling rapid scaling and feature deployment."
+      title: "Cloud-Native Medical Apps",
+      description: "Containerized microservices architecture enabling rapid scaling and deployment of medical applications."
     },
     {
       icon: <Shield size={24} />,
-      title: "Compliance Framework",
+      title: "Healthcare Compliance",
       description: "Built-in controls for HIPAA, GDPR, and regional healthcare regulations with continuous compliance monitoring."
     },
   ];
@@ -377,7 +377,7 @@ export const InfrastructureSection = () => {
             viewport={{ once: true }}
             className="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary-100 border border-primary-200 rounded-full text-primary-700 inline-block mb-4"
           >
-            Infrastructure
+            MedTech Infrastructure
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -386,7 +386,7 @@ export const InfrastructureSection = () => {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-6"
           >
-            Powerful Foundation for Health Innovation
+            Powerful Foundation for Medical Innovation
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -395,8 +395,8 @@ export const InfrastructureSection = () => {
             viewport={{ once: true }}
             className="text-neutral-600 text-lg"
           >
-            Our enterprise-grade infrastructure is designed for security, scalability, and
-            interoperability across global health systems.
+            Posspole MedTech's enterprise-grade infrastructure is designed for security, scalability, and
+            interoperability across global healthcare systems.
           </motion.p>
         </div>
 
@@ -414,7 +414,7 @@ export const InfrastructureSection = () => {
         <div className="flex flex-col space-y-6">
           <div className="flex items-center justify-between">
             <h3 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-              Healthcare Innovation Hub
+              Posspole MedTech Innovation Hub
             </h3>
             <div className="flex space-x-2">
               {[1, 2, 3].map((dot) => (
@@ -428,26 +428,26 @@ export const InfrastructureSection = () => {
             {[
               {
                 icon: <Server className="w-6 h-6 text-white" />,
-                title: "Intelligent Processing",
-                description: "AI-powered data processing with real-time analytics capabilities",
+                title: "Medical Data Processing",
+                description: "AI-powered medical data processing with real-time diagnostic analytics",
                 gradient: "from-primary-500 to-primary-600"
               },
               {
                 icon: <Network className="w-6 h-6 text-white" />,
-                title: "Smart Networks",
-                description: "Self-optimizing networks with predictive scaling",
+                title: "Telemedicine Networks",
+                description: "High-performance networks optimized for remote patient monitoring",
                 gradient: "from-secondary-500 to-secondary-600"
               },
               {
                 icon: <Shield className="w-6 h-6 text-white" />,
-                title: "Quantum Security",
-                description: "Next-gen encryption with quantum-resistant algorithms",
+                title: "Patient Data Security",
+                description: "Next-gen encryption with quantum-resistant algorithms for PHI protection",
                 gradient: "from-primary-500 to-primary-600"
               },
               {
                 icon: <Database className="w-6 h-6 text-white" />,
-                title: "Neural Storage",
-                description: "Bio-inspired storage systems with autonomous optimization",
+                title: "Medical Imaging Storage",
+                description: "Advanced storage systems optimized for DICOM and large medical datasets",
                 gradient: "from-secondary-500 to-secondary-600"
               }
             ].map((item, index) => (
@@ -506,24 +506,24 @@ export const InfrastructureSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="p-8 md:p-12">
               <h3 className="text-2xl font-display font-bold text-neutral-900 mb-4">
-                Performance You Can Trust
+                Medical-Grade Performance
               </h3>
               <p className="text-neutral-600 mb-6">
-                Our infrastructure consistently delivers industry-leading performance metrics
+                Posspole MedTech's infrastructure consistently delivers industry-leading performance metrics
                 across all critical dimensions of healthcare technology.
               </p>
               <Terminal className="mb-6 terminal-glow">
                 <div className="grid gap-y-2">
-                  <TypingAnimation duration={30} delay={300} className="text-green-400 font-mono">$ bolt-health performance --check</TypingAnimation>
-                  <TypingAnimation duration={15} delay={1500} className="text-blue-400 font-mono">✓ Initializing performance diagnostics...</TypingAnimation>
-                  <TypingAnimation duration={10} delay={2000} className="text-yellow-400 font-mono">✓ Compiling system metrics...</TypingAnimation>
+                  <TypingAnimation duration={30} delay={300} className="text-green-400 font-mono">$ posspole-medtech performance --check</TypingAnimation>
+                  <TypingAnimation duration={15} delay={1500} className="text-blue-400 font-mono">✓ Initializing medical systems diagnostics...</TypingAnimation>
+                  <TypingAnimation duration={10} delay={2000} className="text-yellow-400 font-mono">✓ Compiling healthcare metrics...</TypingAnimation>
                   <TypingAnimation duration={10} delay={2300} className="text-neutral-400 font-mono opacity-80">[ ████████████████████ ] 100% complete</TypingAnimation>
                   
                   {[
-                    { label: "Uptime", value: 99.99, color: "bg-green-500" },
-                    { label: "Data Processing Speed", value: 85, color: "bg-blue-500" },
-                    { label: "Security Rating", value: 97, color: "bg-purple-500" },
-                    { label: "Scalability Index", value: 92, color: "bg-amber-500" },
+                    { label: "Medical System Uptime", value: 99.99, color: "bg-green-500" },
+                    { label: "Diagnostic Processing Speed", value: 92, color: "bg-blue-500" },
+                    { label: "Patient Data Security", value: 99, color: "bg-purple-500" },
+                    { label: "Telemedicine Reliability", value: 95, color: "bg-amber-500" },
                   ].map((metric, index) => (
                     <AnimatedSpan 
                       key={index} 
@@ -605,18 +605,18 @@ export const InfrastructureSection = () => {
             <div className="bg-gradient-to-br from-primary-100 to-secondary-100 p-8 md:p-12 flex items-center">
               <div className="w-full">
                 <h3 className="text-2xl font-display font-bold text-neutral-900 mb-6">
-                  Compliance & Certifications
+                  Medical Compliance & Certifications
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
                   {[
                     "HIPAA Compliant",
                     "GDPR Ready",
-                    "ISO 27001",
+                    "ISO 13485",
                     "SOC 2 Type II",
-                    "HITRUST CSF",
+                    "FDA 510(k) Cleared",
                     "FDA CFR Part 11",
-                    "PCI DSS Level 1",
-                    "NIST Cybersecurity",
+                    "CE Marked Devices",
+                    "MDR Compliant",
                   ].map((cert, index) => (
                     <motion.div
                       key={index}
